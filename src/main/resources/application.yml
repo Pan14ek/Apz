@@ -1,0 +1,72 @@
+---
+# This default profile is used when running a single instance completely standalone:
+spring:
+  profiles: default
+server:
+  port: 8080
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+  # united-states, france, and vietnam illustrate running 3 intercommunicating instances.
+  # This example has them running side-by-side on localhost
+  # -- which is unrealistic in production
+  # -- but does illustrate how multiple instances collaborate.
+  #
+  # Run by opening 3 separate command prompts:
+  # java -jar -Dspring.profiles.active=united-states SpringCloudServiceRegistrationEurekaServer.jar
+  # java -jar -Dspring.profiles.active=france SpringCloudServiceRegistrationEurekaServer.jar
+  # java -jar -Dspring.profiles.active=vietnam SpringCloudServiceRegistrationEurekaServer.jar
+
+---
+spring:
+  profiles: ukraine
+  application:
+    name: eureka-server-clustered   # ==> This is Service-Id
+server:
+  port: 8081
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8082/eureka/,http://localhost:8083/eureka/
+
+---
+spring:
+  profiles: poland
+  application:
+    name: eureka-server-clustered   # ==> This is Service-Id
+server:
+  port: 8082
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8081/eureka/,http://localhost:8083/eureka/
+
+---
+spring:
+  profiles: belarus
+  application:
+    name: eureka-server-clustered    # ==> This is Service-Id
+server:
+  port: 8083
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8081/eureka/,http://localhost:8082/eureka/

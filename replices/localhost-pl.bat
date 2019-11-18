@@ -1,0 +1,1 @@
+java -jar -Dspring.profiles.active=poland Apz-0.0.1-SNAPSHOT.jar

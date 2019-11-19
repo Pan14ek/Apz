@@ -1,4 +1,9 @@
 package ua.nure.apz.makieiev.apz.repository;
 
-public interface AchievementRepository {
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+import ua.nure.apz.makieiev.apz.model.Achievement;
+
+@Repository
+public interface AchievementRepository extends CrudRepository<Achievement, Long> {
 }

@@ -1,4 +1,9 @@
 package ua.nure.apz.makieiev.apz.repository;
 
-public interface TaskRepository {
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+import ua.nure.apz.makieiev.apz.model.Task;
+
+@Repository
+public interface TaskRepository extends CrudRepository<Task, Long> {
 }

@@ -11,7 +11,7 @@ eureka:
     registerWithEureka: false
     fetchRegistry: false
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/gamification/
 
   # united-states, france, and vietnam illustrate running 3 intercommunicating instances.
   # This example has them running side-by-side on localhost
@@ -37,7 +37,7 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://localhost:8082/eureka/,http://localhost:8083/eureka/
+      defaultZone: http://localhost:8082/gamification/,http://localhost:8083/gamification/
 
 ---
 spring:
@@ -53,7 +53,7 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://localhost:8081/eureka/,http://localhost:8083/eureka/
+      defaultZone: http://localhost:8081/gamification/,http://localhost:8083/gamification/
 
 ---
 spring:
@@ -69,4 +69,4 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://localhost:8081/eureka/,http://localhost:8082/eureka/
+      defaultZone: http://localhost:8081/gamification/,http://localhost:8082/gamification/

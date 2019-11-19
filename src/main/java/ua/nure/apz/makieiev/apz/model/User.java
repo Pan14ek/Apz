@@ -29,6 +29,8 @@ import java.io.Serializable;
 @Table(name = "users")
 public class User implements Serializable {
 
+    private static final long serialVersionUID = 2088533017886963287L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_user")

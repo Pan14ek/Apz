@@ -28,6 +28,8 @@ import java.util.List;
 @Table(name = "companies")
 public class Company implements Serializable {
 
+    private static final long serialVersionUID = -228532897230053924L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_company")

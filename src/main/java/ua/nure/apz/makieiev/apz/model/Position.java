@@ -28,6 +28,8 @@ import java.io.Serializable;
 @Table(name = "positions")
 public class Position implements Serializable {
 
+    private static final long serialVersionUID = -9078571099374308233L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_position")
@@ -45,8 +47,10 @@ public class Position implements Serializable {
     @JoinColumn(name = "id_position")
     private User user;
 
-    public Position(long id,@NotNull String title, String description) {
+    public Position(long id, String title, String description) {
+        this.id = id;
         this.title = title;
         this.description = description;
     }
+
 }

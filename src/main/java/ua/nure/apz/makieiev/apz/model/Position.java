@@ -45,4 +45,8 @@ public class Position implements Serializable {
     @JoinColumn(name = "id_position")
     private User user;
 
+    public Position(long id,@NotNull String title, String description) {
+        this.title = title;
+        this.description = description;
+    }
 }

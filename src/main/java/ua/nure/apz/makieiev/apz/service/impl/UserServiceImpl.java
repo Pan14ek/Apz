@@ -1,5 +1,6 @@
 package ua.nure.apz.makieiev.apz.service.impl;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public User add(User user) {
         try {
+            String md5Password = DigestUtils.md5Hex(user.getPassword());
+            user.setPassword(md5Password);
             return userRepository.save(user);
         } catch (DataIntegrityViolationException ex) {
             throw new NotUniqueUserException("The database contains a user with particular fields");

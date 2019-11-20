@@ -1,4 +1,4 @@
-package ua.nure.apz.makieiev.apz.application;
+package ua.nure.apz.makieiev.apz;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

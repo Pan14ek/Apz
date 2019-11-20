@@ -6,6 +6,14 @@ import java.util.Optional;
 
 public interface CompanyService {
 
-	Optional<Company> findById(long id);
+    Company add(Company company);
+
+    Company update(Company company);
+
+    Optional<Company> findById(long id);
+
+    Optional<Company> getByTitle(String title);
+
+    boolean removeById(long id);
 
 }

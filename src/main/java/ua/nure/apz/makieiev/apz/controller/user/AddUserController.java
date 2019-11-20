@@ -1,8 +1,7 @@
-package ua.nure.apz.makieiev.apz.controller;
+package ua.nure.apz.makieiev.apz.controller.user;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,16 +31,14 @@ public class AddUserController {
     private CompanyService companyService;
     private AddUserValidator addUserValidator;
     private ModelMapper modelMapper;
-    private LoadBalancerClient loadBalancerClient;
 
     @Autowired
     public AddUserController(UserService userService, CompanyService companyService,
-                             AddUserValidator addUserValidator, ModelMapper modelMapper, LoadBalancerClient loadBalancerClient) {
+                             AddUserValidator addUserValidator, ModelMapper modelMapper) {
         this.userService = userService;
         this.companyService = companyService;
         this.addUserValidator = addUserValidator;
         this.modelMapper = modelMapper;
-        this.loadBalancerClient = loadBalancerClient;
     }
 
     @PostMapping(value = SubLink.ADD, produces = "application/json")

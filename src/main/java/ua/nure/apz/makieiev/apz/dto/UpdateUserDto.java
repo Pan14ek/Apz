@@ -9,15 +9,16 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AddUserDto {
+public class UpdateUserDto {
 
+    private long id;
     private long idCompany;
+    private long idPosition;
     private String firstName;
     private String lastName;
     private String email;
     private String login;
     private String password;
-    private String repeatPassword;
     private String imageLink;
 
 }

@@ -1,24 +1,29 @@
-package ua.nure.apz.makieiev.apz.dto;
+package ua.nure.apz.makieiev.apz.dto.user;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
-@Getter
 @Setter
+@Getter
+@EqualsAndHashCode
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class UpdateUserDto {
+@Builder
+public class AddUserDto {
 
-    private long id;
     private long idCompany;
-    private long idPosition;
     private String firstName;
     private String lastName;
     private String email;
     private String login;
     private String password;
+    private String repeatPassword;
     private String imageLink;
 
 }

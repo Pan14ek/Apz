@@ -1,7 +1,9 @@
 package ua.nure.apz.makieiev.apz.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import ua.nure.apz.makieiev.apz.exception.notunique.NotUniqueGiftCategoryException;
 import ua.nure.apz.makieiev.apz.model.GiftCategory;
 import ua.nure.apz.makieiev.apz.repository.GiftCategoryRepository;
 import ua.nure.apz.makieiev.apz.service.GiftCategoryService;
@@ -20,7 +22,11 @@ public class GiftCategoryServiceImpl implements GiftCategoryService {
 
     @Override
     public GiftCategory add(GiftCategory giftCategory) {
-        return giftCategoryRepository.save(giftCategory);
+        try {
+            return giftCategoryRepository.save(giftCategory);
+        } catch (DataIntegrityViolationException ex) {
+            throw new NotUniqueGiftCategoryException("The database contains a gift category with this title");
+        }
     }
 
     @Override

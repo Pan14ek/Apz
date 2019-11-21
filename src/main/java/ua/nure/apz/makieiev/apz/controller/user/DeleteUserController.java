@@ -4,14 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ua.nure.apz.makieiev.apz.dto.UserIdentificationDto;
+import ua.nure.apz.makieiev.apz.dto.user.UserIdentificationDto;
 import ua.nure.apz.makieiev.apz.service.UserService;
 import ua.nure.apz.makieiev.apz.util.constant.RequestMappingLink;
 import ua.nure.apz.makieiev.apz.util.constant.SubLink;
-import ua.nure.apz.makieiev.apz.util.validation.UserIdentificationValidator;
+import ua.nure.apz.makieiev.apz.util.validation.user.UserIdentificationValidator;
 
 import java.util.Map;
 
@@ -29,7 +29,7 @@ public class DeleteUserController {
     }
 
     @DeleteMapping(value = SubLink.DELETE)
-    public ResponseEntity deleteUser(@RequestBody UserIdentificationDto userIdentificationDto) {
+    public ResponseEntity deleteUser(@RequestParam UserIdentificationDto userIdentificationDto) {
         Map<String, Boolean> errors = userIdentificationValidator.userIdentificationValidate(userIdentificationDto);
         if (errors.isEmpty()) {
             boolean deleteFlag = userService.removeById(userIdentificationDto.getId());

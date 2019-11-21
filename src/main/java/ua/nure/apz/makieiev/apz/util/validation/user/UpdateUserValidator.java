@@ -1,7 +1,7 @@
-package ua.nure.apz.makieiev.apz.util.validation;
+package ua.nure.apz.makieiev.apz.util.validation.user;
 
 import org.springframework.stereotype.Component;
-import ua.nure.apz.makieiev.apz.dto.AddUserDto;
+import ua.nure.apz.makieiev.apz.dto.user.UpdateUserDto;
 import ua.nure.apz.makieiev.apz.util.constant.UserConstants;
 
 import java.util.HashMap;
@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Objects;
 
 @Component
-public class AddUserValidator {
+public class UpdateUserValidator {
 
     private static final String REGEX_EMAIL = "(.+@(\\w+\\W+\\w.*))";
     private static final String REGEX_FIELD_WITH_NUMBERS = "\\d+";
@@ -17,15 +17,16 @@ public class AddUserValidator {
     private static final int MAX_FIELD_LENGTH = 20;
     private static final int MIN_FIELD_LENGTH = 6;
 
-    public Map<String, Boolean> addUserValidate(AddUserDto addUserDto) {
+    public Map<String, Boolean> updateUserDtoValidate(UpdateUserDto updateUserDto) {
         Map<String, Boolean> errors = new HashMap<>();
-        validateLogin(addUserDto.getLogin(), errors);
-        validateEmail(addUserDto.getEmail(), errors);
-        validateFirstName(addUserDto.getFirstName(), errors);
-        validateLastName(addUserDto.getLastName(), errors);
-        validatePassword(addUserDto.getPassword(), errors);
-        validateRepeatPassword(addUserDto.getPassword(), addUserDto.getRepeatPassword(), errors);
-        validateImageLink(addUserDto.getImageLink(), errors);
+        validateLogin(updateUserDto.getLogin(), errors);
+        validateEmail(updateUserDto.getEmail(), errors);
+        validateFirstName(updateUserDto.getFirstName(), errors);
+        validateLastName(updateUserDto.getLastName(), errors);
+        validatePassword(updateUserDto.getOldPassword(), errors);
+        validateRepeatPassword(updateUserDto.getOldRepeatPassword(), updateUserDto.getOldPassword(), errors);
+        validatePassword(updateUserDto.getPassword(), errors);
+        validateImageLink(updateUserDto.getImageLink(), errors);
         return errors;
     }
 
@@ -100,5 +101,6 @@ public class AddUserValidator {
     private boolean checkStringLength(String field) {
         return field.length() < MIN_FIELD_LENGTH || field.length() > MAX_FIELD_LENGTH;
     }
+
 
 }

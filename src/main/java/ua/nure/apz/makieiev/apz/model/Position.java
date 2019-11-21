@@ -1,6 +1,8 @@
 package ua.nure.apz.makieiev.apz.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,14 +18,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
-@Getter
 @Setter
-@NoArgsConstructor
+@Getter
 @EqualsAndHashCode
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "positions")
 public class Position implements Serializable {
@@ -35,22 +38,15 @@ public class Position implements Serializable {
     @Column(name = "id_position")
     private long id;
 
-    @NotNull
     @Column(name = "Title")
     private String title;
 
     @Column(name = "Description")
     private String description;
 
-    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_position")
+    @JsonManagedReference
     private User user;
-
-    public Position(long id, String title, String description) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-    }
 
 }

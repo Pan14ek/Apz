@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ua.nure.apz.makieiev.apz.dto.AddUserDto;
-import ua.nure.apz.makieiev.apz.exception.NotUniqueUserException;
+import ua.nure.apz.makieiev.apz.dto.user.AddUserDto;
+import ua.nure.apz.makieiev.apz.exception.notunique.NotUniqueUserException;
 import ua.nure.apz.makieiev.apz.exception.response.ConflictException;
 import ua.nure.apz.makieiev.apz.model.Company;
 import ua.nure.apz.makieiev.apz.model.Position;
@@ -18,7 +18,7 @@ import ua.nure.apz.makieiev.apz.service.CompanyService;
 import ua.nure.apz.makieiev.apz.service.UserService;
 import ua.nure.apz.makieiev.apz.util.constant.RequestMappingLink;
 import ua.nure.apz.makieiev.apz.util.constant.SubLink;
-import ua.nure.apz.makieiev.apz.util.validation.AddUserValidator;
+import ua.nure.apz.makieiev.apz.util.validation.user.AddUserValidator;
 
 import java.util.Map;
 import java.util.Optional;
@@ -53,19 +53,25 @@ public class AddUserController {
 
     private ResponseEntity addHandler(Map<String, Boolean> errors, AddUserDto addUserDto) {
         if (errors.isEmpty()) {
-            Optional<Company> companyOptional = companyService.findById(addUserDto.getIdCompany());
-            User user = modelMapper.map(addUserDto, User.class);
-            companyOptional.ifPresent(user::setCompany);
-            user.setPosition(getDefaultPosition());
-            user = userService.add(user);
+            User user = getUser(addUserDto);
             return new ResponseEntity<>(user, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
         }
     }
 
+    private User getUser(AddUserDto addUserDto) {
+        Optional<Company> companyOptional = companyService.findById(addUserDto.getIdCompany());
+        User user = modelMapper.map(addUserDto, User.class);
+        user.setId(0);
+        companyOptional.ifPresent(user::setCompany);
+        user.setPosition(getDefaultPosition());
+        user = userService.add(user);
+        return user;
+    }
+
     private Position getDefaultPosition() {
-        return new Position(1L, "Employee", "Person who work on the different job");
+        return new Position(1L, "Employee", "");
     }
 
 }

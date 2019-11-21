@@ -1,7 +1,9 @@
 package ua.nure.apz.makieiev.apz.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import ua.nure.apz.makieiev.apz.exception.notunique.NotUniqueGiftException;
 import ua.nure.apz.makieiev.apz.model.Gift;
 import ua.nure.apz.makieiev.apz.repository.GiftRepository;
 import ua.nure.apz.makieiev.apz.service.GiftService;
@@ -20,7 +22,11 @@ public class GiftServiceImpl implements GiftService {
 
     @Override
     public Gift add(Gift gift) {
-        return giftRepository.save(gift);
+        try {
+            return giftRepository.save(gift);
+        } catch (DataIntegrityViolationException ex) {
+            throw new NotUniqueGiftException("The database contains a gift with this title");
+        }
     }
 
     @Override

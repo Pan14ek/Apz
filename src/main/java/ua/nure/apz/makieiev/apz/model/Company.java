@@ -1,6 +1,8 @@
 package ua.nure.apz.makieiev.apz.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,12 +20,13 @@ import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.List;
 
-@Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
 @EqualsAndHashCode
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "companies")
 public class Company implements Serializable {
@@ -45,6 +48,7 @@ public class Company implements Serializable {
     private String title;
 
     @OneToMany(mappedBy = "company", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<User> users;
 
 }

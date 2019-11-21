@@ -1,7 +1,9 @@
 package ua.nure.apz.makieiev.apz.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import ua.nure.apz.makieiev.apz.exception.notunique.NotUniqueCompanyException;
 import ua.nure.apz.makieiev.apz.model.Company;
 import ua.nure.apz.makieiev.apz.repository.CompanyRepository;
 import ua.nure.apz.makieiev.apz.service.CompanyService;
@@ -20,7 +22,11 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public Company add(Company company) {
-        return companyRepository.save(company);
+        try {
+            return companyRepository.save(company);
+        } catch (DataIntegrityViolationException ex) {
+            throw new NotUniqueCompanyException("The database contains a company with this title");
+        }
     }
 
     @Override

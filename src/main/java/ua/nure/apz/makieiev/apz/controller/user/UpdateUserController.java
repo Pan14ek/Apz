@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ua.nure.apz.makieiev.apz.dto.UpdateUserDto;
-import ua.nure.apz.makieiev.apz.exception.NotUniqueUserException;
+import ua.nure.apz.makieiev.apz.dto.user.UpdateUserDto;
+import ua.nure.apz.makieiev.apz.exception.notunique.NotUniqueUserException;
 import ua.nure.apz.makieiev.apz.exception.response.ConflictException;
 import ua.nure.apz.makieiev.apz.model.Company;
 import ua.nure.apz.makieiev.apz.model.Position;
@@ -20,7 +20,7 @@ import ua.nure.apz.makieiev.apz.service.UserService;
 import ua.nure.apz.makieiev.apz.util.constant.RequestMappingLink;
 import ua.nure.apz.makieiev.apz.util.constant.SubLink;
 import ua.nure.apz.makieiev.apz.util.constant.UserConstants;
-import ua.nure.apz.makieiev.apz.util.validation.UpdateUserValidator;
+import ua.nure.apz.makieiev.apz.util.validation.user.UpdateUserValidator;
 
 import java.util.Map;
 import java.util.Optional;
@@ -58,26 +58,35 @@ public class UpdateUserController {
     private ResponseEntity updateUserHandler(Map<String, Boolean> errors, UpdateUserDto updateUserDto) {
         if (errors.isEmpty()) {
             Optional<User> optionalUser = userService.getByLogin(updateUserDto.getLogin());
-            if (optionalUser.isPresent()) {
-                User user = optionalUser.get();
-                updateUserBean(user, updateUserDto);
-                user = userService.update(user);
-                return new ResponseEntity<>(user, HttpStatus.OK);
-            } else {
-                errors.put(UserConstants.INCORRECT_LOGIN, true);
-                return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
-            }
+            return getResponseEntity(errors, updateUserDto, optionalUser);
         } else {
             return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
         }
     }
 
-    private void updateUserBean(User user, UpdateUserDto updateUserDto) {
-        user = modelMapper.map(updateUserDto, User.class);
+    private ResponseEntity getResponseEntity(Map<String, Boolean> errors, UpdateUserDto updateUserDto, Optional<User> optionalUser) {
+        if (optionalUser.isPresent()) {
+            User user = getUserWithUpdatedField(updateUserDto, optionalUser.get());
+            user = userService.update(user);
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        } else {
+            errors.put(UserConstants.INCORRECT_LOGIN, true);
+            return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    private User getUserWithUpdatedField(UpdateUserDto updateUserDto, User user) {
+        User userMapper = modelMapper.map(updateUserDto, User.class);
         Optional<Company> optionalCompany = companyService.findById(updateUserDto.getIdCompany());
         Optional<Position> positionOptional = positionService.getById(updateUserDto.getIdPosition());
         optionalCompany.ifPresent(user::setCompany);
         positionOptional.ifPresent(user::setPosition);
+        user.setLogin(userMapper.getLogin());
+        user.setFirstName(userMapper.getFirstName());
+        user.setLastName(userMapper.getLastName());
+        user.setEmail(userMapper.getEmail());
+        user.setImageLink(userMapper.getImageLink());
+        return user;
     }
 
 }

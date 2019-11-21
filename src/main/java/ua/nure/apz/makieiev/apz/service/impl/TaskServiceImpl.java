@@ -1,7 +1,9 @@
 package ua.nure.apz.makieiev.apz.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import ua.nure.apz.makieiev.apz.exception.notunique.NotUniqueTaskException;
 import ua.nure.apz.makieiev.apz.model.Task;
 import ua.nure.apz.makieiev.apz.repository.TaskRepository;
 import ua.nure.apz.makieiev.apz.service.TaskService;
@@ -20,7 +22,11 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public Task add(Task task) {
-        return taskRepository.save(task);
+        try {
+            return taskRepository.save(task);
+        } catch (DataIntegrityViolationException ex) {
+            throw new NotUniqueTaskException("The database contains a task with this title");
+        }
     }
 
     @Override

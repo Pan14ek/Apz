@@ -4,7 +4,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
-import ua.nure.apz.makieiev.apz.exception.NotUniqueUserException;
+import ua.nure.apz.makieiev.apz.exception.notunique.NotUniqueUserException;
 import ua.nure.apz.makieiev.apz.model.User;
 import ua.nure.apz.makieiev.apz.repository.UserRepository;
 import ua.nure.apz.makieiev.apz.service.UserService;
@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User add(User user) {
         try {
-            String md5Password = DigestUtils.md5Hex(user.getPassword());
+            String md5Password = encryptPassword(user.getPassword());
             user.setPassword(md5Password);
             return userRepository.save(user);
         } catch (DataIntegrityViolationException ex) {
@@ -56,7 +56,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean checkPassword(User user, String password) {
-        return Objects.equals(user.getPassword(), password);
+        return Objects.equals(user.getPassword(), encryptPassword(password));
+    }
+
+    private String encryptPassword(String password) {
+        return DigestUtils.md5Hex(password);
     }
 
 }

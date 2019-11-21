@@ -1,4 +1,6 @@
-package ua.nure.apz.makieiev.apz.exception;
+package ua.nure.apz.makieiev.apz.exception.notunique;
+
+import ua.nure.apz.makieiev.apz.exception.AppException;
 
 public class NotUniqueUserException extends AppException {
 

@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ua.nure.apz.makieiev.apz.dto.UserIdentificationDto;
+import ua.nure.apz.makieiev.apz.dto.user.UserIdentificationDto;
 import ua.nure.apz.makieiev.apz.model.User;
 import ua.nure.apz.makieiev.apz.service.UserService;
 import ua.nure.apz.makieiev.apz.util.constant.RequestMappingLink;
 import ua.nure.apz.makieiev.apz.util.constant.SubLink;
-import ua.nure.apz.makieiev.apz.util.validation.UserIdentificationValidator;
+import ua.nure.apz.makieiev.apz.util.validation.user.UserIdentificationValidator;
 
 import java.util.Map;
 import java.util.Optional;

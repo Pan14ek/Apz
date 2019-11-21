@@ -1,7 +1,9 @@
 package ua.nure.apz.makieiev.apz.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import ua.nure.apz.makieiev.apz.exception.notunique.NotUniqueEventException;
 import ua.nure.apz.makieiev.apz.model.Event;
 import ua.nure.apz.makieiev.apz.repository.EventRepository;
 import ua.nure.apz.makieiev.apz.service.EventService;
@@ -20,7 +22,11 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public Event add(Event event) {
-        return eventRepository.save(event);
+        try {
+            return eventRepository.save(event);
+        } catch (DataIntegrityViolationException ex) {
+            throw new NotUniqueEventException("The database contains a event with this title");
+        }
     }
 
     @Override

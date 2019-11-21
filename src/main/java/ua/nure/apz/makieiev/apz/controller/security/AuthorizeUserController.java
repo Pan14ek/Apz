@@ -1,4 +1,4 @@
-package ua.nure.apz.makieiev.apz.controller;
+package ua.nure.apz.makieiev.apz.controller.security;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -6,20 +6,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ua.nure.apz.makieiev.apz.dto.SignInUserDto;
+import ua.nure.apz.makieiev.apz.dto.user.SignInUserDto;
 import ua.nure.apz.makieiev.apz.exception.response.NotFoundException;
 import ua.nure.apz.makieiev.apz.model.User;
 import ua.nure.apz.makieiev.apz.service.UserService;
 import ua.nure.apz.makieiev.apz.util.constant.RequestMappingLink;
 import ua.nure.apz.makieiev.apz.util.constant.SubLink;
-import ua.nure.apz.makieiev.apz.util.validation.SignInUserValidator;
+import ua.nure.apz.makieiev.apz.util.validation.user.SignInUserValidator;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(RequestMappingLink.ALL)
+@RequestMapping(RequestMappingLink.USER)
 public class AuthorizeUserController {
 
     private final UserService userService;
@@ -31,32 +30,31 @@ public class AuthorizeUserController {
     }
 
     @PostMapping(value = SubLink.SIGN_IN, produces = "application/json")
-    public ResponseEntity signIn(@RequestBody SignInUserDto signInUserDto, HttpServletRequest request) {
+    public ResponseEntity signIn(@RequestBody SignInUserDto signInUserDto) {
         Map<String, Boolean> errors = signInUserValidator.signInUserValidate(signInUserDto);
-        return signInHandler(errors, signInUserDto, request);
+        return signInHandler(errors, signInUserDto);
     }
 
-    private ResponseEntity signInHandler(Map<String, Boolean> errors, SignInUserDto signInUserDto, HttpServletRequest request) {
+    private ResponseEntity signInHandler(Map<String, Boolean> errors, SignInUserDto signInUserDto) {
         if (errors.isEmpty()) {
-            return checkUser(signInUserDto, request);
+            return checkUser(signInUserDto);
         } else {
             return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
         }
     }
 
-    private ResponseEntity checkUser(SignInUserDto signInUserDto, HttpServletRequest request) {
+    private ResponseEntity checkUser(SignInUserDto signInUserDto) {
         Optional<User> user = userService.getByLogin(signInUserDto.getLogin());
         if (user.isPresent()) {
             boolean passwordFlag = userService.checkPassword(user.get(), signInUserDto.getPassword());
-            return checkPasswordHandler(passwordFlag, user.get(), request);
+            return checkPasswordHandler(passwordFlag, user.get());
         } else {
             throw new NotFoundException("Login or password is incorrect");
         }
     }
 
-    private ResponseEntity checkPasswordHandler(boolean passwordFlag, User user, HttpServletRequest request) {
+    private ResponseEntity checkPasswordHandler(boolean passwordFlag, User user) {
         if (passwordFlag) {
-            request.getSession().setAttribute("user", user);
             return new ResponseEntity<>(user, HttpStatus.OK);
         } else {
             throw new NotFoundException("Login or password is incorrect");

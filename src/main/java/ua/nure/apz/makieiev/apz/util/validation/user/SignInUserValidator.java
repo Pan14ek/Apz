@@ -1,11 +1,13 @@
-package ua.nure.apz.makieiev.apz.util.validation;
+package ua.nure.apz.makieiev.apz.util.validation.user;
 
-import ua.nure.apz.makieiev.apz.dto.SignInUserDto;
+import org.springframework.stereotype.Component;
+import ua.nure.apz.makieiev.apz.dto.user.SignInUserDto;
 import ua.nure.apz.makieiev.apz.util.constant.UserConstants;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Component
 public class SignInUserValidator {
 
     private static final int MAX_FIELD_LENGTH = 20;

@@ -1,12 +1,16 @@
 package ua.nure.apz.makieiev.apz.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.stereotype.Service;
+import ua.nure.apz.makieiev.apz.exception.notunique.NotUniquePositionException;
 import ua.nure.apz.makieiev.apz.model.Position;
 import ua.nure.apz.makieiev.apz.repository.PositionRepository;
 import ua.nure.apz.makieiev.apz.service.PositionService;
 
 import java.util.Optional;
 
+@Service
 public class PositionServiceImpl implements PositionService {
 
     private PositionRepository positionRepository;
@@ -18,7 +22,11 @@ public class PositionServiceImpl implements PositionService {
 
     @Override
     public Position add(Position position) {
-        return positionRepository.save(position);
+        try {
+            return positionRepository.save(position);
+        } catch (DataIntegrityViolationException ex) {
+            throw new NotUniquePositionException("The database contains a position with title field");
+        }
     }
 
     @Override

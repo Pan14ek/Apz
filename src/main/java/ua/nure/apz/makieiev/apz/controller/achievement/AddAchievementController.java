@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ua.nure.apz.makieiev.apz.dto.achievement.AchievementDto;
 import ua.nure.apz.makieiev.apz.exception.notunique.NotUniqueAchievementException;
 import ua.nure.apz.makieiev.apz.exception.response.ConflictException;
-import ua.nure.apz.makieiev.apz.model.Achievement;
+import ua.nure.apz.makieiev.apz.model.entity.Achievement;
 import ua.nure.apz.makieiev.apz.service.AchievementService;
 import ua.nure.apz.makieiev.apz.util.constant.RequestMappingLink;
 import ua.nure.apz.makieiev.apz.util.constant.SubLink;

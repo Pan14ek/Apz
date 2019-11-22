@@ -1,4 +1,4 @@
-package ua.nure.apz.makieiev.apz.model;
+package ua.nure.apz.makieiev.apz.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
@@ -15,10 +15,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.List;
 
 @Setter
 @Getter
@@ -28,25 +28,27 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "positions")
-public class Position implements Serializable {
+@Table(name = "companies")
+public class Company implements Serializable {
 
-    private static final long serialVersionUID = -9078571099374308233L;
+    private static final long serialVersionUID = -228532897230053924L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_position")
+    @Column(name = "id_company")
     private long id;
+
+    @Column(name = "Address")
+    private String address;
+
+    @Column(name = "Email")
+    private String email;
 
     @Column(name = "Title")
     private String title;
 
-    @Column(name = "Description")
-    private String description;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_position")
+    @OneToMany(mappedBy = "company", fetch = FetchType.LAZY)
     @JsonManagedReference
-    private User user;
+    private List<User> users;
 
 }

@@ -1,6 +1,6 @@
 package ua.nure.apz.makieiev.apz.service;
 
-import ua.nure.apz.makieiev.apz.model.User;
+import ua.nure.apz.makieiev.apz.model.entity.User;
 
 import java.util.Optional;
 

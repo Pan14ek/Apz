@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ua.nure.apz.makieiev.apz.dto.position.AddPositionDto;
+import ua.nure.apz.makieiev.apz.dto.position.PositionDto;
 import ua.nure.apz.makieiev.apz.exception.notunique.NotUniquePositionException;
 import ua.nure.apz.makieiev.apz.exception.response.ConflictException;
-import ua.nure.apz.makieiev.apz.model.Position;
+import ua.nure.apz.makieiev.apz.model.entity.Position;
 import ua.nure.apz.makieiev.apz.service.PositionService;
 import ua.nure.apz.makieiev.apz.util.constant.RequestMappingLink;
 import ua.nure.apz.makieiev.apz.util.constant.SubLink;
-import ua.nure.apz.makieiev.apz.util.validation.position.AddPositionValidator;
+import ua.nure.apz.makieiev.apz.util.validation.position.PositionValidator;
 
 import java.util.Map;
 
@@ -23,30 +23,30 @@ import java.util.Map;
 @RequestMapping(RequestMappingLink.POSITION)
 public class AddPositionController {
 
-    private AddPositionValidator addPositionValidator;
+    private PositionValidator positionValidator;
     private PositionService positionService;
     private ModelMapper modelMapper;
 
     @Autowired
-    public AddPositionController(AddPositionValidator addPositionValidator, PositionService positionService, ModelMapper modelMapper) {
-        this.addPositionValidator = addPositionValidator;
+    public AddPositionController(PositionValidator positionValidator, PositionService positionService, ModelMapper modelMapper) {
+        this.positionValidator = positionValidator;
         this.positionService = positionService;
         this.modelMapper = modelMapper;
     }
 
     @PostMapping(value = SubLink.ADD, produces = "application/json")
-    public ResponseEntity addPosition(@RequestBody AddPositionDto addPositionDto) {
+    public ResponseEntity addPosition(@RequestBody PositionDto positionDto) {
         try {
-            Map<String, Boolean> errors = addPositionValidator.positionValidate(addPositionDto);
-            return getResponseEntity(addPositionDto, errors);
+            Map<String, Boolean> errors = positionValidator.positionValidate(positionDto);
+            return getResponseEntity(positionDto, errors);
         } catch (NotUniquePositionException ex) {
             throw new ConflictException(ex.getMessage());
         }
     }
 
-    private ResponseEntity getResponseEntity(AddPositionDto addPositionDto, Map<String, Boolean> errors) {
+    private ResponseEntity getResponseEntity(PositionDto positionDto, Map<String, Boolean> errors) {
         if (errors.isEmpty()) {
-            Position position = modelMapper.map(addPositionDto, Position.class);
+            Position position = modelMapper.map(positionDto, Position.class);
             position = positionService.add(position);
             return new ResponseEntity<>(position, HttpStatus.OK);
         } else {

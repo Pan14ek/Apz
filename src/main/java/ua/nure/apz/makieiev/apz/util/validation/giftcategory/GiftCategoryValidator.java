@@ -1,18 +1,18 @@
-package ua.nure.apz.makieiev.apz.util.validation.position;
+package ua.nure.apz.makieiev.apz.util.validation.giftcategory;
 
 import org.springframework.stereotype.Component;
-import ua.nure.apz.makieiev.apz.dto.position.AddPositionDto;
+import ua.nure.apz.makieiev.apz.dto.giftcategory.GiftCategoryDto;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
 @Component
-public class AddPositionValidator {
+public class GiftCategoryValidator {
 
-    public Map<String, Boolean> positionValidate(AddPositionDto addPositionDto) {
+    public Map<String, Boolean> giftCategoryValidate(GiftCategoryDto giftCategoryDto) {
         Map<String, Boolean> errors = new HashMap<>();
-        titleValidate(addPositionDto.getTitle(), errors);
+        titleValidate(giftCategoryDto.getTitle(), errors);
         return errors;
     }
 

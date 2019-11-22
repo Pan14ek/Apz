@@ -1,4 +1,4 @@
-package ua.nure.apz.makieiev.apz.model;
+package ua.nure.apz.makieiev.apz.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

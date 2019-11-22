@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ua.nure.apz.makieiev.apz.dto.user.SignInUserDto;
 import ua.nure.apz.makieiev.apz.exception.response.NotFoundException;
-import ua.nure.apz.makieiev.apz.model.User;
+import ua.nure.apz.makieiev.apz.model.entity.User;
 import ua.nure.apz.makieiev.apz.service.UserService;
 import ua.nure.apz.makieiev.apz.util.constant.RequestMappingLink;
 import ua.nure.apz.makieiev.apz.util.constant.SubLink;

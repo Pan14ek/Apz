@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import ua.nure.apz.makieiev.apz.exception.notunique.NotUniqueUserException;
-import ua.nure.apz.makieiev.apz.model.User;
+import ua.nure.apz.makieiev.apz.model.entity.User;
 import ua.nure.apz.makieiev.apz.repository.UserRepository;
 import ua.nure.apz.makieiev.apz.service.UserService;
 

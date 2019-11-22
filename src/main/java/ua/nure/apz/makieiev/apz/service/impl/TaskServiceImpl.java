@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import ua.nure.apz.makieiev.apz.exception.notunique.NotUniqueTaskException;
-import ua.nure.apz.makieiev.apz.model.Task;
+import ua.nure.apz.makieiev.apz.model.entity.Task;
 import ua.nure.apz.makieiev.apz.repository.TaskRepository;
 import ua.nure.apz.makieiev.apz.service.TaskService;
 

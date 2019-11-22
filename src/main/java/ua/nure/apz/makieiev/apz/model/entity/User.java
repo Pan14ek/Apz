@@ -1,4 +1,4 @@
-package ua.nure.apz.makieiev.apz.model;
+package ua.nure.apz.makieiev.apz.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;

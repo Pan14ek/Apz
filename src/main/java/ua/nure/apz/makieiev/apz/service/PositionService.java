@@ -1,6 +1,6 @@
 package ua.nure.apz.makieiev.apz.service;
 
-import ua.nure.apz.makieiev.apz.model.Position;
+import ua.nure.apz.makieiev.apz.model.entity.Position;
 
 import java.util.Optional;
 

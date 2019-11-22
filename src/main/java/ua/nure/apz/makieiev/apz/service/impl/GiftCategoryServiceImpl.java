@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import ua.nure.apz.makieiev.apz.exception.notunique.NotUniqueGiftCategoryException;
-import ua.nure.apz.makieiev.apz.model.GiftCategory;
+import ua.nure.apz.makieiev.apz.model.entity.GiftCategory;
 import ua.nure.apz.makieiev.apz.repository.GiftCategoryRepository;
 import ua.nure.apz.makieiev.apz.service.GiftCategoryService;
 

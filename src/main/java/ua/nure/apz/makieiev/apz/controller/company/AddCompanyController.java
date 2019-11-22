@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ua.nure.apz.makieiev.apz.dto.company.CompanyDto;
 import ua.nure.apz.makieiev.apz.exception.notunique.NotUniqueCompanyException;
 import ua.nure.apz.makieiev.apz.exception.response.ConflictException;
-import ua.nure.apz.makieiev.apz.model.Company;
+import ua.nure.apz.makieiev.apz.model.entity.Company;
 import ua.nure.apz.makieiev.apz.service.CompanyService;
 import ua.nure.apz.makieiev.apz.util.constant.RequestMappingLink;
 import ua.nure.apz.makieiev.apz.util.constant.SubLink;

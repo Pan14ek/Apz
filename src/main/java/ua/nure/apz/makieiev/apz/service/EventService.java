@@ -1,6 +1,6 @@
 package ua.nure.apz.makieiev.apz.service;
 
-import ua.nure.apz.makieiev.apz.model.Event;
+import ua.nure.apz.makieiev.apz.model.entity.Event;
 
 import java.util.Optional;
 

@@ -1,10 +1,12 @@
 package ua.nure.apz.makieiev.apz.util.validation.position;
 
+import org.springframework.stereotype.Component;
 import ua.nure.apz.makieiev.apz.dto.position.PositionIdentificationDto;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Component
 public class PositionIdentificationValidator {
 
     public Map<String, Boolean> positionIdentificationValidate(PositionIdentificationDto positionIdentificationDto) {

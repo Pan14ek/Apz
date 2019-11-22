@@ -1,6 +1,6 @@
 package ua.nure.apz.makieiev.apz.service;
 
-import ua.nure.apz.makieiev.apz.model.Gift;
+import ua.nure.apz.makieiev.apz.model.entity.Gift;
 
 import java.util.Optional;
 

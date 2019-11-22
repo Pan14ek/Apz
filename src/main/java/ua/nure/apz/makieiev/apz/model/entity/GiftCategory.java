@@ -1,4 +1,4 @@
-package ua.nure.apz.makieiev.apz.model;
+package ua.nure.apz.makieiev.apz.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,12 +10,9 @@ import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
 
@@ -27,14 +24,13 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "gifts")
-public class Gift implements Serializable {
+@Table(name = "giftcategories")
+public class GiftCategory implements Serializable {
 
-    private static final long serialVersionUID = -7407784017150927639L;
+    private static final long serialVersionUID = 5030031427936324453L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_gift")
     private long id;
 
     @Column(name = "Title")
@@ -42,9 +38,5 @@ public class Gift implements Serializable {
 
     @Column(name = "Description")
     private String description;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_gift_category")
-    private GiftCategory giftCategory;
 
 }

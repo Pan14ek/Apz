@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import ua.nure.apz.makieiev.apz.exception.notunique.NotUniqueEventException;
-import ua.nure.apz.makieiev.apz.model.Event;
+import ua.nure.apz.makieiev.apz.model.entity.Event;
 import ua.nure.apz.makieiev.apz.repository.EventRepository;
 import ua.nure.apz.makieiev.apz.service.EventService;
 

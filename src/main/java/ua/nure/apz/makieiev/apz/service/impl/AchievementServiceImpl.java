@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import ua.nure.apz.makieiev.apz.exception.notunique.NotUniqueAchievementException;
-import ua.nure.apz.makieiev.apz.model.Achievement;
+import ua.nure.apz.makieiev.apz.model.entity.Achievement;
 import ua.nure.apz.makieiev.apz.repository.AchievementRepository;
 import ua.nure.apz.makieiev.apz.service.AchievementService;
 

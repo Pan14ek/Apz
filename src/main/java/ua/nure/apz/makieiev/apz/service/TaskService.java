@@ -1,6 +1,6 @@
 package ua.nure.apz.makieiev.apz.service;
 
-import ua.nure.apz.makieiev.apz.model.Task;
+import ua.nure.apz.makieiev.apz.model.entity.Task;
 
 import java.util.Optional;
 

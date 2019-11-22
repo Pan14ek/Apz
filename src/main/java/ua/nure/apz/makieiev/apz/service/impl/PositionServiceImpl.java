@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import ua.nure.apz.makieiev.apz.exception.notunique.NotUniquePositionException;
-import ua.nure.apz.makieiev.apz.model.Position;
+import ua.nure.apz.makieiev.apz.model.entity.Position;
 import ua.nure.apz.makieiev.apz.repository.PositionRepository;
 import ua.nure.apz.makieiev.apz.service.PositionService;
 

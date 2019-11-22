@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import ua.nure.apz.makieiev.apz.exception.notunique.NotUniqueCompanyException;
-import ua.nure.apz.makieiev.apz.model.Company;
+import ua.nure.apz.makieiev.apz.model.entity.Company;
 import ua.nure.apz.makieiev.apz.repository.CompanyRepository;
 import ua.nure.apz.makieiev.apz.service.CompanyService;
 

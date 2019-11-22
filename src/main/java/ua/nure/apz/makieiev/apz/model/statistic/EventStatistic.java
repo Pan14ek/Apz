@@ -1,4 +1,4 @@
-package ua.nure.apz.makieiev.apz.dto.position;
+package ua.nure.apz.makieiev.apz.model.statistic;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,14 +10,15 @@ import lombok.ToString;
 
 @Setter
 @Getter
-@EqualsAndHashCode
-@ToString
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@ToString
+@EqualsAndHashCode
 @Builder
-public class AddPositionDto {
+public class EventStatistic {
 
-    private String title;
-    private String description;
+    private String eventTitle;
+    private long userAmount;
+    private long taskAmount
 
 }

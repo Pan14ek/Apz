@@ -35,7 +35,7 @@ public class AddEventValidator {
     }
 
     private boolean isNotDatesValid(LocalDateTime firstDate, LocalDateTime secondDate) {
-        return secondDate.isAfter(firstDate);
+        return !secondDate.isAfter(firstDate);
     }
 
 }

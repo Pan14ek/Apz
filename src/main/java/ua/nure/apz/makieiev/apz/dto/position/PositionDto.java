@@ -1,4 +1,4 @@
-package ua.nure.apz.makieiev.apz.dto.gift;
+package ua.nure.apz.makieiev.apz.dto.position;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,10 +15,10 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class GiftDto {
+public class PositionDto {
 
+    private long id;
     private String title;
     private String description;
-    private long idGiftCategory;
 
 }

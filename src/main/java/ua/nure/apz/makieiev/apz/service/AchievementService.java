@@ -1,6 +1,6 @@
 package ua.nure.apz.makieiev.apz.service;
 
-import ua.nure.apz.makieiev.apz.model.Achievement;
+import ua.nure.apz.makieiev.apz.model.entity.Achievement;
 
 import java.util.Optional;
 

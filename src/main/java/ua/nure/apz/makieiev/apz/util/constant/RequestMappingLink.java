@@ -10,6 +10,7 @@ public class RequestMappingLink {
     public static final String GIFT_CATEGORY = "/giftCategory";
     public static final String TASK = "/task";
     public static final String GIFT = "/gift";
+    public static final String STATISTIC = "/statistic";
 
     private RequestMappingLink() {
     }

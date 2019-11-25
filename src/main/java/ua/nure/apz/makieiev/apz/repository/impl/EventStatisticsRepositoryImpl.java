@@ -2,6 +2,7 @@ package ua.nure.apz.makieiev.apz.repository.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 import ua.nure.apz.makieiev.apz.model.statistic.EventStatistic;
 import ua.nure.apz.makieiev.apz.repository.EventStatisticRepository;
 
@@ -10,14 +11,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+@Repository
 public class EventStatisticsRepositoryImpl implements EventStatisticRepository {
 
-    private static final String GET_ALL_EVENT_STATISTIC_SQL = "SELECT events.title as EventTitle,\n" +
-            "COUNT(DISTINCT user.id_user) as UserAmount,\n" +
-            "COUNT(DISTINCT task.Id_task) as TaskAmount \n" +
-            "FROM events \n" +
-            "INNER JOIN usersevents ON usersevents.Id_event = events.Id_event \n" +
-            "INNER JOIN users user ON user.Id_user = usersevents.Id_user \n" +
+    private static final String GET_ALL_EVENT_STATISTIC_SQL = "SELECT events.title as EventTitle," +
+            "COUNT(DISTINCT user.id_user) as UserAmount," +
+            "COUNT(DISTINCT task.Id_task) as TaskAmount," +
+            "(SELECT COUNT(DISTINCT taskachievements.Id_task) FROM taskachievements " +
+            "INNER JOIN users on users.id_user = taskachievements.Id_user)/" +
+            "COUNT(DISTINCT task.Id_task) as PercentOfDoneTask " +
+            "FROM events " +
+            "INNER JOIN usersevents ON usersevents.Id_event = events.Id_event " +
+            "INNER JOIN users user ON user.Id_user = usersevents.Id_user " +
             "INNER JOIN tasks task ON task.Id_event = events.Id_event;";
 
     private DataSource dataSource;

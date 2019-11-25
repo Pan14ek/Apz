@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.math.BigDecimal;
+
 @Setter
 @Getter
 @AllArgsConstructor
@@ -19,6 +21,7 @@ public class EventStatistic {
 
     private String eventTitle;
     private long userAmount;
-    private long taskAmount
+    private long taskAmount;
+    private BigDecimal percentOfDoneTasks;
 
 }

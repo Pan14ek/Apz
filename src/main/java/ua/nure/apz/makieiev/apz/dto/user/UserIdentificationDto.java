@@ -17,6 +17,6 @@ import lombok.ToString;
 @Builder
 public class UserIdentificationDto {
 
-    private long id;
+	private long id;
 
 }

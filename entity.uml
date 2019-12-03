@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>ua.nure.apz.makieiev.apz.model.entity</OriginalElement>
+  <nodes>
+    <node x="404.77083333333337" y="410.0">ua.nure.apz.makieiev.apz.model.entity.Task</node>
+    <node x="585.7708333333334" y="443.0">ua.nure.apz.makieiev.apz.model.entity.Achievement</node>
+    <node x="0.0" y="183.0">ua.nure.apz.makieiev.apz.model.entity.Position</node>
+    <node x="378.4375" y="172.0">ua.nure.apz.makieiev.apz.model.entity.Event</node>
+    <node x="771.0208333333334" y="183.0">ua.nure.apz.makieiev.apz.model.entity.Gift</node>
+    <node x="181.0" y="172.0">ua.nure.apz.makieiev.apz.model.entity.Company</node>
+    <node x="90.5" y="388.0">ua.nure.apz.makieiev.apz.model.entity.User</node>
+    <node x="766.7708333333334" y="454.0">ua.nure.apz.makieiev.apz.model.entity.GiftEvent</node>
+    <node x="783.0208333333334" y="0.0">ua.nure.apz.makieiev.apz.model.entity.GiftCategory</node>
+    <node x="370.97395833333337" y="692.0">ua.nure.apz.makieiev.apz.model.entity.TaskAchievement</node>
+    <node x="88.875" y="703.0">ua.nure.apz.makieiev.apz.model.entity.UserEvent</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="ua.nure.apz.makieiev.apz.model.entity.UserEvent" target="ua.nure.apz.makieiev.apz.model.entity.Event">
+      <point x="53.75" y="-61.0" />
+      <point x="250.125" y="672.0" />
+      <point x="319.9704861111111" y="672.0" />
+      <point x="319.9704861111111" y="363.0" />
+      <point x="409.1041666666667" y="363.0" />
+      <point x="-61.333333333333314" y="83.0" />
+    </edge>
+    <edge source="ua.nure.apz.makieiev.apz.model.entity.User" target="ua.nure.apz.makieiev.apz.model.entity.Company">
+      <point x="20.125" y="-127.0" />
+      <point x="191.125" y="363.0" />
+      <point x="221.25" y="363.0" />
+      <point x="-40.25" y="83.0" />
+    </edge>
+    <edge source="ua.nure.apz.makieiev.apz.model.entity.TaskAchievement" target="ua.nure.apz.makieiev.apz.model.entity.Achievement">
+      <point x="80.66666666666663" y="-72.0" />
+      <point x="572.640625" y="672.0" />
+      <point x="666.2708333333334" y="672.0" />
+      <point x="0.0" y="72.0" />
+    </edge>
+    <edge source="ua.nure.apz.makieiev.apz.model.entity.GiftEvent" target="ua.nure.apz.makieiev.apz.model.entity.Gift">
+      <point x="32.25" y="-61.0" />
+      <point x="0.0" y="72.0" />
+    </edge>
+    <edge source="ua.nure.apz.makieiev.apz.model.entity.TaskAchievement" target="ua.nure.apz.makieiev.apz.model.entity.Task">
+      <point x="0.0" y="-72.0" />
+      <point x="491.97395833333337" y="672.0" />
+      <point x="485.27083333333337" y="672.0" />
+      <point x="0.0" y="105.0" />
+    </edge>
+    <edge source="ua.nure.apz.makieiev.apz.model.entity.Gift" target="ua.nure.apz.makieiev.apz.model.entity.GiftCategory">
+      <point x="0.0" y="-72.0" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="ua.nure.apz.makieiev.apz.model.entity.Company" target="ua.nure.apz.makieiev.apz.model.entity.User">
+      <point x="40.25" y="83.0" />
+      <point x="301.75" y="363.0" />
+      <point x="231.375" y="363.0" />
+      <point x="60.375" y="-127.0" />
+    </edge>
+    <edge source="ua.nure.apz.makieiev.apz.model.entity.Position" target="ua.nure.apz.makieiev.apz.model.entity.User">
+      <point x="40.25" y="72.0" />
+      <point x="120.75" y="363.0" />
+      <point x="150.875" y="363.0" />
+      <point x="-20.125" y="-127.0" />
+    </edge>
+    <edge source="ua.nure.apz.makieiev.apz.model.entity.User" target="ua.nure.apz.makieiev.apz.model.entity.Position">
+      <point x="-60.375" y="-127.0" />
+      <point x="110.625" y="363.0" />
+      <point x="40.25" y="363.0" />
+      <point x="-40.25" y="72.0" />
+    </edge>
+    <edge source="ua.nure.apz.makieiev.apz.model.entity.UserEvent" target="ua.nure.apz.makieiev.apz.model.entity.User">
+      <point x="-53.75" y="-61.0" />
+      <point x="142.625" y="672.0" />
+      <point x="130.75" y="672.0" />
+      <point x="-40.25" y="127.0" />
+    </edge>
+    <edge source="ua.nure.apz.makieiev.apz.model.entity.TaskAchievement" target="ua.nure.apz.makieiev.apz.model.entity.User">
+      <point x="-80.66666666666669" y="-72.0" />
+      <point x="411.30729166666663" y="662.0" />
+      <point x="211.25" y="662.0" />
+      <point x="40.25" y="127.0" />
+    </edge>
+    <edge source="ua.nure.apz.makieiev.apz.model.entity.GiftEvent" target="ua.nure.apz.makieiev.apz.model.entity.Event">
+      <point x="-32.25" y="-61.0" />
+      <point x="799.0208333333334" y="363.0" />
+      <point x="531.7708333333334" y="363.0" />
+      <point x="61.33333333333337" y="83.0" />
+    </edge>
+    <edge source="ua.nure.apz.makieiev.apz.model.entity.Task" target="ua.nure.apz.makieiev.apz.model.entity.Event">
+      <point x="0.0" y="-105.0" />
+      <point x="485.27083333333337" y="363.0" />
+      <point x="470.4375" y="363.0" />
+      <point x="0.0" y="83.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="478.5" y="418.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

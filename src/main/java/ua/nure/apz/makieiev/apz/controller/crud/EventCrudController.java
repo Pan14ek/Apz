@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ua.nure.apz.makieiev.apz.dto.event.EventDto;
 import ua.nure.apz.makieiev.apz.dto.event.EventIdentificationDto;
+import ua.nure.apz.makieiev.apz.exception.DateConflictException;
 import ua.nure.apz.makieiev.apz.exception.notunique.NotUniqueEventException;
 import ua.nure.apz.makieiev.apz.exception.response.ConflictException;
 import ua.nure.apz.makieiev.apz.model.entity.Event;
@@ -27,61 +28,61 @@ import java.util.Map;
 @RequestMapping(RequestMappingLink.EVENT)
 public class EventCrudController {
 
-    private AddEventValidator addEventValidator;
-    private EventService eventService;
-    private EventIdentificationValidator eventIdentificationValidator;
+	private AddEventValidator addEventValidator;
+	private EventService eventService;
+	private EventIdentificationValidator eventIdentificationValidator;
 
-    @Autowired
-    public EventCrudController(AddEventValidator addEventValidator, EventService eventService, EventIdentificationValidator eventIdentificationValidator) {
-        this.addEventValidator = addEventValidator;
-        this.eventService = eventService;
-        this.eventIdentificationValidator = eventIdentificationValidator;
-    }
+	@Autowired
+	public EventCrudController(AddEventValidator addEventValidator, EventService eventService, EventIdentificationValidator eventIdentificationValidator) {
+		this.addEventValidator = addEventValidator;
+		this.eventService = eventService;
+		this.eventIdentificationValidator = eventIdentificationValidator;
+	}
 
-    @PostMapping(value = SubLink.ADD, produces = "application/json")
-    public ResponseEntity addEvent(@RequestBody EventDto eventDto) {
-        try {
-            Map<String, Boolean> errors = addEventValidator.addEventValidate(eventDto);
-            return getAddResponseEntity(eventDto, errors);
-        } catch (NotUniqueEventException ex) {
-            throw new ConflictException(ex.getMessage());
-        }
-    }
+	@PostMapping(value = SubLink.ADD, produces = "application/json")
+	public ResponseEntity addEvent(@RequestBody EventDto eventDto) {
+		try {
+			Map<String, Boolean> errors = addEventValidator.addEventValidate(eventDto);
+			return getAddResponseEntity(eventDto, errors);
+		} catch (DateConflictException | NotUniqueEventException ex) {
+			throw new ConflictException(ex.getMessage());
+		}
+	}
 
-    @DeleteMapping(SubLink.DELETE)
-    public ResponseEntity deleteEvent(@RequestParam EventIdentificationDto eventIdentificationDto) {
-        Map<String, Boolean> errors = eventIdentificationValidator.eventIdentificationValidate(eventIdentificationDto);
-        if (errors.isEmpty()) {
-            boolean deleteFlag = eventService.removeById(eventIdentificationDto.getId());
-            return getDeleteResultFlag(deleteFlag);
-        } else {
-            return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
-        }
-    }
+	@DeleteMapping(SubLink.DELETE)
+	public ResponseEntity deleteEvent(@RequestParam EventIdentificationDto eventIdentificationDto) {
+		Map<String, Boolean> errors = eventIdentificationValidator.eventIdentificationValidate(eventIdentificationDto);
+		if (errors.isEmpty()) {
+			boolean deleteFlag = eventService.removeById(eventIdentificationDto.getId());
+			return getDeleteResultFlag(deleteFlag);
+		} else {
+			return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+		}
+	}
 
-    private ResponseEntity getAddResponseEntity(EventDto eventDto, Map<String, Boolean> errors) {
-        if (errors.isEmpty()) {
-            Event event = getEvent(eventDto);
-            return new ResponseEntity<>(event, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
-        }
-    }
+	private ResponseEntity getAddResponseEntity(EventDto eventDto, Map<String, Boolean> errors) {
+		if (errors.isEmpty()) {
+			Event event = getEvent(eventDto);
+			return new ResponseEntity<>(event, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+		}
+	}
 
-    private Event getEvent(@RequestBody EventDto eventDto) {
-        Event event = new Event();
-        event.setTitle(eventDto.getTitle());
-        event.setDescription(eventDto.getDescription());
-        event.setStartDate(eventDto.getStartDate());
-        event.setFinishDate(eventDto.getFinishDate());
-        event = eventService.add(event);
-        return event;
-    }
+	private Event getEvent(@RequestBody EventDto eventDto) {
+		Event event = new Event();
+		event.setTitle(eventDto.getTitle());
+		event.setDescription(eventDto.getDescription());
+		event.setStartDate(eventDto.getStartDate());
+		event.setFinishDate(eventDto.getFinishDate());
+		event = eventService.add(event);
+		return event;
+	}
 
-    private ResponseEntity getDeleteResultFlag(boolean resultFlag) {
-        return resultFlag ?
-                new ResponseEntity<>(true, HttpStatus.OK) :
-                new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
-    }
+	private ResponseEntity getDeleteResultFlag(boolean resultFlag) {
+		return resultFlag ?
+				new ResponseEntity<>(true, HttpStatus.OK) :
+				new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
+	}
 
 }

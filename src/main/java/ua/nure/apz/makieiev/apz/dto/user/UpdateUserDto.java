@@ -17,16 +17,16 @@ import lombok.ToString;
 @Builder
 public class UpdateUserDto {
 
-    private long id;
-    private long idCompany;
-    private long idPosition;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String login;
-    private String oldPassword;
-    private String oldRepeatPassword;
-    private String password;
-    private String imageLink;
+	private long id;
+	private long idCompany;
+	private long idPosition;
+	private String firstName;
+	private String lastName;
+	private String email;
+	private String login;
+	private String oldPassword;
+	private String oldRepeatPassword;
+	private String password;
+	private String imageLink;
 
 }

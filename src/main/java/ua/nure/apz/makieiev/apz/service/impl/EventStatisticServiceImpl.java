@@ -11,16 +11,16 @@ import java.util.List;
 @Service
 public class EventStatisticServiceImpl implements EventStatisticService {
 
-    private EventStatisticRepository eventStatisticRepository;
+	private EventStatisticRepository eventStatisticRepository;
 
-    @Autowired
-    public EventStatisticServiceImpl(EventStatisticRepository eventStatisticRepository) {
-        this.eventStatisticRepository = eventStatisticRepository;
-    }
+	@Autowired
+	public EventStatisticServiceImpl(EventStatisticRepository eventStatisticRepository) {
+		this.eventStatisticRepository = eventStatisticRepository;
+	}
 
-    @Override
-    public List<EventStatistic> getAllEventStatistics() {
-        return eventStatisticRepository.getAllEventStatistics();
-    }
+	@Override
+	public List<EventStatistic> getAllEventStatistics() {
+		return eventStatisticRepository.getAllEventStatistics();
+	}
 
 }

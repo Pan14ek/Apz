@@ -19,9 +19,9 @@ import java.math.BigDecimal;
 @Builder
 public class EventStatistic {
 
-    private String eventTitle;
-    private long userAmount;
-    private long taskAmount;
-    private BigDecimal percentOfDoneTasks;
+	private String eventTitle;
+	private long userAmount;
+	private long taskAmount;
+	private BigDecimal percentOfDoneTasks;
 
 }

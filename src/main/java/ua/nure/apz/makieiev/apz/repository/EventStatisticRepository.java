@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface EventStatisticRepository {
 
-    List<EventStatistic> getAllEventStatistics();
+	List<EventStatistic> getAllEventStatistics();
 
 }

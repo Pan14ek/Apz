@@ -13,40 +13,40 @@ import java.util.Optional;
 @Service
 public class PositionServiceImpl implements PositionService {
 
-    private PositionRepository positionRepository;
+	private PositionRepository positionRepository;
 
-    @Autowired
-    public PositionServiceImpl(PositionRepository positionRepository) {
-        this.positionRepository = positionRepository;
-    }
+	@Autowired
+	public PositionServiceImpl(PositionRepository positionRepository) {
+		this.positionRepository = positionRepository;
+	}
 
-    @Override
-    public Position add(Position position) {
-        try {
-            return positionRepository.save(position);
-        } catch (DataIntegrityViolationException ex) {
-            throw new NotUniquePositionException("The database contains a position with title field");
-        }
-    }
+	@Override
+	public Position add(Position position) {
+		try {
+			return positionRepository.save(position);
+		} catch (DataIntegrityViolationException ex) {
+			throw new NotUniquePositionException("The database contains a position with title field");
+		}
+	}
 
-    @Override
-    public Position update(Position position) {
-        return positionRepository.save(position);
-    }
+	@Override
+	public Position update(Position position) {
+		return positionRepository.save(position);
+	}
 
-    @Override
-    public Optional<Position> getById(long id) {
-        return positionRepository.findById(id);
-    }
+	@Override
+	public Optional<Position> getById(long id) {
+		return positionRepository.findById(id);
+	}
 
-    @Override
-    public Optional<Position> getByTitle(String title) {
-        return positionRepository.findByTitle(title);
-    }
+	@Override
+	public Optional<Position> getByTitle(String title) {
+		return positionRepository.findByTitle(title);
+	}
 
-    @Override
-    public boolean removeById(long id) {
-        positionRepository.deleteById(id);
-        return true;
-    }
+	@Override
+	public boolean removeById(long id) {
+		positionRepository.deleteById(id);
+		return true;
+	}
 }

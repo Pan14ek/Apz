@@ -9,6 +9,6 @@ import java.util.Optional;
 @Repository
 public interface AchievementRepository extends CrudRepository<Achievement, Long> {
 
-    Optional<Achievement> findByTitle(String title);
+	Optional<Achievement> findByTitle(String title);
 
 }

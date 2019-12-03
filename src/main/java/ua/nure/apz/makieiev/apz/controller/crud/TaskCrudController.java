@@ -21,36 +21,36 @@ import java.util.Map;
 @RequestMapping(RequestMappingLink.TASK)
 public class TaskCrudController {
 
-    private TaskService taskService;
-    private AddTaskValidator addTaskValidator;
-    private TaskIdentificationValidator taskIdentificationValidator;
-    private ModelMapper modelMapper;
+	private TaskService taskService;
+	private AddTaskValidator addTaskValidator;
+	private TaskIdentificationValidator taskIdentificationValidator;
+	private ModelMapper modelMapper;
 
-    @Autowired
-    public TaskCrudController(TaskService taskService, AddTaskValidator addTaskValidator,
-                              TaskIdentificationValidator taskIdentificationValidator, ModelMapper modelMapper) {
-        this.taskService = taskService;
-        this.addTaskValidator = addTaskValidator;
-        this.taskIdentificationValidator = taskIdentificationValidator;
-        this.modelMapper = modelMapper;
-    }
+	@Autowired
+	public TaskCrudController(TaskService taskService, AddTaskValidator addTaskValidator,
+	                          TaskIdentificationValidator taskIdentificationValidator, ModelMapper modelMapper) {
+		this.taskService = taskService;
+		this.addTaskValidator = addTaskValidator;
+		this.taskIdentificationValidator = taskIdentificationValidator;
+		this.modelMapper = modelMapper;
+	}
 
-    @DeleteMapping(SubLink.DELETE)
-    public ResponseEntity deleteTask(@RequestParam TaskIdentificationDto taskIdentificationDto) {
-        Map<String, Boolean> errors = taskIdentificationValidator.taskIdentificationValidate(taskIdentificationDto);
-        if (errors.isEmpty()) {
-            boolean deleteFlag = taskService.removeById(taskIdentificationDto.getId());
-            return getResultFlag(deleteFlag);
-        } else {
-            return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
-        }
-    }
+	@DeleteMapping(SubLink.DELETE)
+	public ResponseEntity deleteTask(@RequestParam TaskIdentificationDto taskIdentificationDto) {
+		Map<String, Boolean> errors = taskIdentificationValidator.taskIdentificationValidate(taskIdentificationDto);
+		if (errors.isEmpty()) {
+			boolean deleteFlag = taskService.removeById(taskIdentificationDto.getId());
+			return getResultFlag(deleteFlag);
+		} else {
+			return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+		}
+	}
 
-    private ResponseEntity getResultFlag(boolean resultFlag) {
-        return resultFlag ?
-                new ResponseEntity<>(true, HttpStatus.OK) :
-                new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
-    }
+	private ResponseEntity getResultFlag(boolean resultFlag) {
+		return resultFlag ?
+				new ResponseEntity<>(true, HttpStatus.OK) :
+				new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
+	}
 
 
 }

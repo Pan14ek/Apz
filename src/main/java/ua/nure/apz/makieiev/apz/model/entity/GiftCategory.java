@@ -27,16 +27,17 @@ import java.io.Serializable;
 @Table(name = "giftcategories")
 public class GiftCategory implements Serializable {
 
-    private static final long serialVersionUID = 5030031427936324453L;
+	private static final long serialVersionUID = 5030031427936324453L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "Id_gift_category")
+	private long id;
 
-    @Column(name = "Title")
-    private String title;
+	@Column(name = "Title")
+	private String title;
 
-    @Column(name = "Description")
-    private String description;
+	@Column(name = "Description")
+	private String description;
 
 }

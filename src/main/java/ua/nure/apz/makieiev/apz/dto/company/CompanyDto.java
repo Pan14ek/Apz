@@ -17,8 +17,8 @@ import lombok.ToString;
 @Builder
 public class CompanyDto {
 
-    private String address;
-    private String email;
-    private String title;
+	private String address;
+	private String email;
+	private String title;
 
 }

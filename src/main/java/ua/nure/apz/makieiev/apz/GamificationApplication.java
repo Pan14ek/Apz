@@ -14,10 +14,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EntityScan("ua.nure.apz.makieiev.apz.model")
 @EnableTransactionManagement
 @SpringBootApplication
-public class GamificationApplicationServer {
+public class GamificationApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(GamificationApplicationServer.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(GamificationApplication.class, args);
+	}
 
 }

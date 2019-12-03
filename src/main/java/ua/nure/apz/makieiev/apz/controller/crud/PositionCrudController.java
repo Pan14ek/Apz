@@ -28,80 +28,80 @@ import java.util.Optional;
 @RequestMapping(RequestMappingLink.POSITION)
 public class PositionCrudController {
 
-    private PositionValidator positionValidator;
-    private PositionIdentificationValidator positionIdentificationValidator;
-    private PositionService positionService;
-    private ModelMapper modelMapper;
+	private PositionValidator positionValidator;
+	private PositionIdentificationValidator positionIdentificationValidator;
+	private PositionService positionService;
+	private ModelMapper modelMapper;
 
-    @Autowired
-    public PositionCrudController(PositionValidator positionValidator, PositionIdentificationValidator positionIdentificationValidator,
-                                  PositionService positionService, ModelMapper modelMapper) {
-        this.positionValidator = positionValidator;
-        this.positionIdentificationValidator = positionIdentificationValidator;
-        this.positionService = positionService;
-        this.modelMapper = modelMapper;
-    }
+	@Autowired
+	public PositionCrudController(PositionValidator positionValidator, PositionIdentificationValidator positionIdentificationValidator,
+	                              PositionService positionService, ModelMapper modelMapper) {
+		this.positionValidator = positionValidator;
+		this.positionIdentificationValidator = positionIdentificationValidator;
+		this.positionService = positionService;
+		this.modelMapper = modelMapper;
+	}
 
-    @PostMapping(value = SubLink.ADD, produces = "application/json")
-    public ResponseEntity addPosition(@RequestBody PositionDto positionDto) {
-        try {
-            Map<String, Boolean> errors = positionValidator.positionValidate(positionDto);
-            return getResponseEntity(positionDto, errors);
-        } catch (NotUniquePositionException ex) {
-            throw new ConflictException(ex.getMessage());
-        }
-    }
+	@PostMapping(value = SubLink.ADD, produces = "application/json")
+	public ResponseEntity addPosition(@RequestBody PositionDto positionDto) {
+		try {
+			Map<String, Boolean> errors = positionValidator.positionValidate(positionDto);
+			return getResponseEntity(positionDto, errors);
+		} catch (NotUniquePositionException ex) {
+			throw new ConflictException(ex.getMessage());
+		}
+	}
 
-    @DeleteMapping(SubLink.DELETE)
-    public ResponseEntity deletePosition(@RequestParam PositionIdentificationDto positionIdentificationDto) {
-        Map<String, Boolean> errors = positionIdentificationValidator.positionIdentificationValidate(positionIdentificationDto);
-        if (errors.isEmpty()) {
-            boolean deleteFlag = positionService.removeById(positionIdentificationDto.getId());
-            return getResultFlag(deleteFlag);
-        } else {
-            return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
-        }
-    }
+	@DeleteMapping(SubLink.DELETE)
+	public ResponseEntity deletePosition(@RequestParam PositionIdentificationDto positionIdentificationDto) {
+		Map<String, Boolean> errors = positionIdentificationValidator.positionIdentificationValidate(positionIdentificationDto);
+		if (errors.isEmpty()) {
+			boolean deleteFlag = positionService.removeById(positionIdentificationDto.getId());
+			return getResultFlag(deleteFlag);
+		} else {
+			return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+		}
+	}
 
-    @PostMapping(value = SubLink.UPDATE, produces = "application/json")
-    public ResponseEntity updatePosition(@RequestBody PositionDto positionDto) {
-        Map<String, Boolean> errors = positionValidator.positionValidate(positionDto);
-        if (errors.isEmpty()) {
-            return getUpdateResponseEntity(positionDto, errors);
-        } else {
-            return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
-        }
-    }
+	@PostMapping(value = SubLink.UPDATE, produces = "application/json")
+	public ResponseEntity updatePosition(@RequestBody PositionDto positionDto) {
+		Map<String, Boolean> errors = positionValidator.positionValidate(positionDto);
+		if (errors.isEmpty()) {
+			return getUpdateResponseEntity(positionDto, errors);
+		} else {
+			return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+		}
+	}
 
-    private ResponseEntity getResponseEntity(PositionDto positionDto, Map<String, Boolean> errors) {
-        if (errors.isEmpty()) {
-            Position position = modelMapper.map(positionDto, Position.class);
-            position = positionService.add(position);
-            return new ResponseEntity<>(position, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
-        }
-    }
+	private ResponseEntity getResponseEntity(PositionDto positionDto, Map<String, Boolean> errors) {
+		if (errors.isEmpty()) {
+			Position position = modelMapper.map(positionDto, Position.class);
+			position = positionService.add(position);
+			return new ResponseEntity<>(position, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+		}
+	}
 
-    private ResponseEntity getResultFlag(boolean resultFlag) {
-        return resultFlag ?
-                new ResponseEntity<>(true, HttpStatus.OK) :
-                new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
-    }
+	private ResponseEntity getResultFlag(boolean resultFlag) {
+		return resultFlag ?
+				new ResponseEntity<>(true, HttpStatus.OK) :
+				new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
+	}
 
 
-    private ResponseEntity getUpdateResponseEntity(@RequestBody PositionDto positionDto, Map<String, Boolean> errors) {
-        Optional<Position> position = positionService.getById(positionDto.getId());
-        if (position.isPresent()) {
-            Position newPosition = position.get();
-            newPosition.setTitle(positionDto.getTitle());
-            newPosition.setDescription(positionDto.getDescription());
-            newPosition = positionService.update(newPosition);
-            return new ResponseEntity<>(newPosition, HttpStatus.OK);
-        } else {
-            errors.put("notFoundPosition", true);
-            return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
-        }
-    }
+	private ResponseEntity getUpdateResponseEntity(@RequestBody PositionDto positionDto, Map<String, Boolean> errors) {
+		Optional<Position> position = positionService.getById(positionDto.getId());
+		if (position.isPresent()) {
+			Position newPosition = position.get();
+			newPosition.setTitle(positionDto.getTitle());
+			newPosition.setDescription(positionDto.getDescription());
+			newPosition = positionService.update(newPosition);
+			return new ResponseEntity<>(newPosition, HttpStatus.OK);
+		} else {
+			errors.put("notFoundPosition", true);
+			return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
+		}
+	}
 
 }

@@ -6,14 +6,14 @@ import java.util.Optional;
 
 public interface GiftCategoryService {
 
-    GiftCategory add(GiftCategory giftCategory);
+	GiftCategory add(GiftCategory giftCategory);
 
-    GiftCategory update(GiftCategory giftCategory);
+	GiftCategory update(GiftCategory giftCategory);
 
-    Optional<GiftCategory> getById(long id);
+	Optional<GiftCategory> getById(long id);
 
-    Optional<GiftCategory> getByTitle(String title);
+	Optional<GiftCategory> getByTitle(String title);
 
-    boolean removeById(long id);
+	boolean removeById(long id);
 
 }

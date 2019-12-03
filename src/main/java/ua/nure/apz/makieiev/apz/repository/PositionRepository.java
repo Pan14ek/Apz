@@ -9,6 +9,6 @@ import java.util.Optional;
 @Repository
 public interface PositionRepository extends CrudRepository<Position, Long> {
 
-    Optional<Position> findByTitle(String title);
+	Optional<Position> findByTitle(String title);
 
 }

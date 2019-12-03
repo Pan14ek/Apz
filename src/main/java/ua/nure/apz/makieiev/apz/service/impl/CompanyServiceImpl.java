@@ -13,41 +13,41 @@ import java.util.Optional;
 @Service
 public class CompanyServiceImpl implements CompanyService {
 
-    private CompanyRepository companyRepository;
+	private CompanyRepository companyRepository;
 
-    @Autowired
-    public CompanyServiceImpl(CompanyRepository companyRepository) {
-        this.companyRepository = companyRepository;
-    }
+	@Autowired
+	public CompanyServiceImpl(CompanyRepository companyRepository) {
+		this.companyRepository = companyRepository;
+	}
 
-    @Override
-    public Company add(Company company) {
-        try {
-            return companyRepository.save(company);
-        } catch (DataIntegrityViolationException ex) {
-            throw new NotUniqueCompanyException("The database contains a company with this title");
-        }
-    }
+	@Override
+	public Company add(Company company) {
+		try {
+			return companyRepository.save(company);
+		} catch (DataIntegrityViolationException ex) {
+			throw new NotUniqueCompanyException("The database contains a company with this title");
+		}
+	}
 
-    @Override
-    public Company update(Company company) {
-        return companyRepository.save(company);
-    }
+	@Override
+	public Company update(Company company) {
+		return companyRepository.save(company);
+	}
 
-    @Override
-    public Optional<Company> findById(long id) {
-        return companyRepository.findById(id);
-    }
+	@Override
+	public Optional<Company> findById(long id) {
+		return companyRepository.findById(id);
+	}
 
-    @Override
-    public Optional<Company> getByTitle(String title) {
-        return companyRepository.findByTitle(title);
-    }
+	@Override
+	public Optional<Company> getByTitle(String title) {
+		return companyRepository.findByTitle(title);
+	}
 
-    @Override
-    public boolean removeById(long id) {
-        companyRepository.deleteById(id);
-        return true;
-    }
+	@Override
+	public boolean removeById(long id) {
+		companyRepository.deleteById(id);
+		return true;
+	}
 
 }

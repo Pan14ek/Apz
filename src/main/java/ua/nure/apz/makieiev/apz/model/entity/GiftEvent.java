@@ -1,4 +1,4 @@
-package ua.nure.apz.makieiev.apz.dto.user;
+package ua.nure.apz.makieiev.apz.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,9 +15,11 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class SignInUserDto {
+public class GiftEvent {
 
-	private String login;
-	private String password;
+	private long id;
+	private Event event;
+	private Gift gift;
+	private long amount;
 
 }

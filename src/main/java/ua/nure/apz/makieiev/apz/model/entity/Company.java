@@ -31,24 +31,24 @@ import java.util.List;
 @Table(name = "companies")
 public class Company implements Serializable {
 
-    private static final long serialVersionUID = -228532897230053924L;
+	private static final long serialVersionUID = -228532897230053924L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_company")
-    private long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_company")
+	private long id;
 
-    @Column(name = "Address")
-    private String address;
+	@Column(name = "Address")
+	private String address;
 
-    @Column(name = "Email")
-    private String email;
+	@Column(name = "Email")
+	private String email;
 
-    @Column(name = "Title")
-    private String title;
+	@Column(name = "Title")
+	private String title;
 
-    @OneToMany(mappedBy = "company", fetch = FetchType.LAZY)
-    @JsonManagedReference
-    private List<User> users;
+	@OneToMany(mappedBy = "company", fetch = FetchType.LAZY)
+	@JsonManagedReference
+	private List<User> users;
 
 }

@@ -6,16 +6,16 @@ import java.util.Optional;
 
 public interface UserService {
 
-    User add(User user);
+	User add(User user);
 
-    User update(User user);
+	User update(User user);
 
-    Optional<User> getById(long id);
+	Optional<User> getById(long id);
 
-    Optional<User> getByLogin(String login);
+	Optional<User> getByLogin(String login);
 
-    boolean removeById(long id);
+	boolean removeById(long id);
 
-    boolean checkPassword(User user, String password);
+	boolean checkPassword(User user, String password);
 
 }

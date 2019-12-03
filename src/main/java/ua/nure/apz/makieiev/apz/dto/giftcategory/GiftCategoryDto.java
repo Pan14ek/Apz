@@ -17,7 +17,7 @@ import lombok.ToString;
 @Builder
 public class GiftCategoryDto {
 
-    private String title;
-    private String description;
+	private String title;
+	private String description;
 
 }

@@ -13,41 +13,41 @@ import java.util.Optional;
 @Service
 public class TaskServiceImpl implements TaskService {
 
-    private TaskRepository taskRepository;
+	private TaskRepository taskRepository;
 
-    @Autowired
-    public TaskServiceImpl(TaskRepository taskRepository) {
-        this.taskRepository = taskRepository;
-    }
+	@Autowired
+	public TaskServiceImpl(TaskRepository taskRepository) {
+		this.taskRepository = taskRepository;
+	}
 
-    @Override
-    public Task add(Task task) {
-        try {
-            return taskRepository.save(task);
-        } catch (DataIntegrityViolationException ex) {
-            throw new NotUniqueTaskException("The database contains a task with this title");
-        }
-    }
+	@Override
+	public Task add(Task task) {
+		try {
+			return taskRepository.save(task);
+		} catch (DataIntegrityViolationException ex) {
+			throw new NotUniqueTaskException("The database contains a task with this title");
+		}
+	}
 
-    @Override
-    public Task update(Task task) {
-        return taskRepository.save(task);
-    }
+	@Override
+	public Task update(Task task) {
+		return taskRepository.save(task);
+	}
 
-    @Override
-    public Optional<Task> getById(long id) {
-        return taskRepository.findById(id);
-    }
+	@Override
+	public Optional<Task> getById(long id) {
+		return taskRepository.findById(id);
+	}
 
-    @Override
-    public Optional<Task> getByTitle(String title) {
-        return taskRepository.findByTitle(title);
-    }
+	@Override
+	public Optional<Task> getByTitle(String title) {
+		return taskRepository.findByTitle(title);
+	}
 
-    @Override
-    public boolean removeById(long id) {
-        taskRepository.deleteById(id);
-        return true;
-    }
+	@Override
+	public boolean removeById(long id) {
+		taskRepository.deleteById(id);
+		return true;
+	}
 
 }

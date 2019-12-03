@@ -17,8 +17,8 @@ import lombok.ToString;
 @Builder
 public class GiftDto {
 
-    private String title;
-    private String description;
-    private long idGiftCategory;
+	private String title;
+	private String description;
+	private long idGiftCategory;
 
 }

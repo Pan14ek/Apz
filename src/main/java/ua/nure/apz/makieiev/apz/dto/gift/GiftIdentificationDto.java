@@ -17,6 +17,6 @@ import lombok.ToString;
 @Builder
 public class GiftIdentificationDto {
 
-    private long id;
+	private long id;
 
 }

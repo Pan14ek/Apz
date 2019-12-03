@@ -17,6 +17,6 @@ import lombok.ToString;
 @Builder
 public class PositionIdentificationDto {
 
-    private long id;
+	private long id;
 
 }

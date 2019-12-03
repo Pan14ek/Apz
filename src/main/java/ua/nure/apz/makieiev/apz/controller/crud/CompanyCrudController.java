@@ -27,55 +27,55 @@ import java.util.Map;
 @RequestMapping(RequestMappingLink.COMPANY)
 public class CompanyCrudController {
 
-    private CompanyService companyService;
-    private AddCompanyValidator addCompanyValidator;
-    private CompanyIdentificationValidator companyIdentificationValidator;
-    private ModelMapper modelMapper;
+	private CompanyService companyService;
+	private AddCompanyValidator addCompanyValidator;
+	private CompanyIdentificationValidator companyIdentificationValidator;
+	private ModelMapper modelMapper;
 
-    @Autowired
-    public CompanyCrudController(CompanyService companyService, AddCompanyValidator addCompanyValidator,
-                                 CompanyIdentificationValidator companyIdentificationValidator, ModelMapper modelMapper) {
-        this.companyService = companyService;
-        this.addCompanyValidator = addCompanyValidator;
-        this.companyIdentificationValidator = companyIdentificationValidator;
-        this.modelMapper = modelMapper;
-    }
+	@Autowired
+	public CompanyCrudController(CompanyService companyService, AddCompanyValidator addCompanyValidator,
+	                             CompanyIdentificationValidator companyIdentificationValidator, ModelMapper modelMapper) {
+		this.companyService = companyService;
+		this.addCompanyValidator = addCompanyValidator;
+		this.companyIdentificationValidator = companyIdentificationValidator;
+		this.modelMapper = modelMapper;
+	}
 
-    @PostMapping(value = SubLink.ADD, produces = "application/json")
-    public ResponseEntity addCompany(@RequestBody CompanyDto companyDto) {
-        try {
-            Map<String, Boolean> errors = addCompanyValidator.addCompanyValidate(companyDto);
-            return getAddResponseEntity(companyDto, errors);
-        } catch (NotUniqueCompanyException ex) {
-            throw new ConflictException(ex.getMessage());
-        }
-    }
+	@PostMapping(value = SubLink.ADD, produces = "application/json")
+	public ResponseEntity addCompany(@RequestBody CompanyDto companyDto) {
+		try {
+			Map<String, Boolean> errors = addCompanyValidator.addCompanyValidate(companyDto);
+			return getAddResponseEntity(companyDto, errors);
+		} catch (NotUniqueCompanyException ex) {
+			throw new ConflictException(ex.getMessage());
+		}
+	}
 
-    @DeleteMapping(SubLink.DELETE)
-    public ResponseEntity deleteCompany(@RequestParam CompanyIdentificationDto companyIdentificationDto) {
-        Map<String, Boolean> errors = companyIdentificationValidator.companyIdentificationValidate(companyIdentificationDto);
-        if (errors.isEmpty()) {
-            boolean deleteFlag = companyService.removeById(companyIdentificationDto.getId());
-            return getDeleteResultFlag(deleteFlag);
-        } else {
-            return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
-        }
-    }
+	@DeleteMapping(SubLink.DELETE)
+	public ResponseEntity deleteCompany(@RequestParam CompanyIdentificationDto companyIdentificationDto) {
+		Map<String, Boolean> errors = companyIdentificationValidator.companyIdentificationValidate(companyIdentificationDto);
+		if (errors.isEmpty()) {
+			boolean deleteFlag = companyService.removeById(companyIdentificationDto.getId());
+			return getDeleteResultFlag(deleteFlag);
+		} else {
+			return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+		}
+	}
 
-    private ResponseEntity getAddResponseEntity(@RequestBody CompanyDto companyDto, Map<String, Boolean> errors) {
-        if (errors.isEmpty()) {
-            Company company = modelMapper.map(companyDto, Company.class);
-            company = companyService.add(company);
-            return new ResponseEntity<>(company, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
-        }
-    }
+	private ResponseEntity getAddResponseEntity(@RequestBody CompanyDto companyDto, Map<String, Boolean> errors) {
+		if (errors.isEmpty()) {
+			Company company = modelMapper.map(companyDto, Company.class);
+			company = companyService.add(company);
+			return new ResponseEntity<>(company, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+		}
+	}
 
-    private ResponseEntity getDeleteResultFlag(boolean resultFlag) {
-        return resultFlag ?
-                new ResponseEntity<>(true, HttpStatus.OK) :
-                new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
-    }
+	private ResponseEntity<Boolean> getDeleteResultFlag(boolean resultFlag) {
+		return resultFlag ?
+				new ResponseEntity<>(true, HttpStatus.OK) :
+				new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
+	}
 
 }

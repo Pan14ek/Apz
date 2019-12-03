@@ -17,11 +17,11 @@ import lombok.ToString;
 @Builder
 public class TaskDto {
 
-    private String title;
-    private String description;
-    private String imageLink;
-    private String status;
-    private int score;
-    private long idEvent;
+	private String title;
+	private String description;
+	private String imageLink;
+	private String status;
+	private int score;
+	private long idEvent;
 
 }

@@ -9,6 +9,6 @@ import java.util.Optional;
 @Repository
 public interface GiftCategoryRepository extends CrudRepository<GiftCategory, Long> {
 
-    Optional<GiftCategory> findByTitle(String title);
+	Optional<GiftCategory> findByTitle(String title);
 
 }

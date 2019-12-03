@@ -9,16 +9,16 @@ import java.util.Map;
 @Component
 public class GiftIdentificationValidator {
 
-    public Map<String, Boolean> giftIdentificationValidate(GiftIdentificationDto giftIdentificationDto) {
-        Map<String, Boolean> errors = new HashMap<>();
-        identificationValidate(giftIdentificationDto.getId(), errors);
-        return errors;
-    }
+	public Map<String, Boolean> giftIdentificationValidate(GiftIdentificationDto giftIdentificationDto) {
+		Map<String, Boolean> errors = new HashMap<>();
+		identificationValidate(giftIdentificationDto.getId(), errors);
+		return errors;
+	}
 
-    private void identificationValidate(long id, Map<String, Boolean> errors) {
-        if (id < 0) {
-            errors.put("id", true);
-        }
-    }
+	private void identificationValidate(long id, Map<String, Boolean> errors) {
+		if (id < 0) {
+			errors.put("id", true);
+		}
+	}
 
 }

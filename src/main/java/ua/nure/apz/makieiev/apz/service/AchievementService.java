@@ -6,14 +6,14 @@ import java.util.Optional;
 
 public interface AchievementService {
 
-    Achievement add(Achievement achievement);
+	Achievement add(Achievement achievement);
 
-    Achievement update(Achievement achievement);
+	Achievement update(Achievement achievement);
 
-    Optional<Achievement> getById(long id);
+	Optional<Achievement> getById(long id);
 
-    Optional<Achievement> getByTitle(String title);
+	Optional<Achievement> getByTitle(String title);
 
-    boolean removeById(long id);
+	boolean removeById(long id);
 
 }

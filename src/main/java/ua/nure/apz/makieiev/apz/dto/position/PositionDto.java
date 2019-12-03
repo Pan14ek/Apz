@@ -17,8 +17,8 @@ import lombok.ToString;
 @Builder
 public class PositionDto {
 
-    private long id;
-    private String title;
-    private String description;
+	private long id;
+	private String title;
+	private String description;
 
 }

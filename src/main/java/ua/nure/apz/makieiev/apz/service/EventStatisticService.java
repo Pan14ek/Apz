@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface EventStatisticService {
 
-    List<EventStatistic> getAllEventStatistics();
+	List<EventStatistic> getAllEventStatistics();
 
 }

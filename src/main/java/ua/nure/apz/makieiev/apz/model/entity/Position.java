@@ -31,28 +31,28 @@ import java.io.Serializable;
 @Table(name = "positions")
 public class Position implements Serializable {
 
-    private static final long serialVersionUID = -9078571099374308233L;
+	private static final long serialVersionUID = -9078571099374308233L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_position")
-    private long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_position")
+	private long id;
 
-    @Column(name = "Title")
-    private String title;
+	@Column(name = "Title")
+	private String title;
 
-    @Column(name = "Description")
-    private String description;
+	@Column(name = "Description")
+	private String description;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_position")
-    @JsonManagedReference
-    private User user;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_position")
+	@JsonManagedReference
+	private User user;
 
-    public Position(long id, String title, String description) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-    }
+	public Position(long id, String title, String description) {
+		this.id = id;
+		this.title = title;
+		this.description = description;
+	}
 
 }

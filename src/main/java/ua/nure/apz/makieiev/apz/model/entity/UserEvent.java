@@ -1,7 +1,5 @@
 package ua.nure.apz.makieiev.apz.model.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,43 +15,31 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Setter
 @Getter
-@EqualsAndHashCode
 @ToString
+@EqualsAndHashCode
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "tasks")
-public class Task implements Serializable {
-
-	private static final long serialVersionUID = -5125129323157902073L;
+@Table(name = "usersevents")
+public class UserEvent {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_task")
+	@Column(name = "Id_user_event")
 	private long id;
 
-	@Column(name = "title")
-	private String title;
-
-	@Column(name = "description")
-	private String description;
-
-	@Column(name = "Image_link")
-	private String imageLink;
-
-	@Column(name = "Status")
-	private String status;
-
-	@Column(name = "Score")
-	private int score;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "Id_event")
+	private Event event;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_event")
-	private Event event;
+	@JoinColumn(name = "Id_user")
+	private User user;
+
+	@Column(name = "Date_registration")
+	private LocalDateTime registrationDate;
 
 }

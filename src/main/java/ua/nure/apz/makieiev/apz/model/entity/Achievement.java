@@ -27,20 +27,20 @@ import java.io.Serializable;
 @Table(name = "achievements")
 public class Achievement implements Serializable {
 
-    private static final long serialVersionUID = 9064993394372733342L;
+	private static final long serialVersionUID = 9064993394372733342L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_achievement")
-    private long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_achievement")
+	private long id;
 
-    @Column(name = "Title")
-    private String title;
+	@Column(name = "Title")
+	private String title;
 
-    @Column(name = "Description")
-    private String description;
+	@Column(name = "Description")
+	private String description;
 
-    @Column(name = "Image_link")
-    private String imageLink;
+	@Column(name = "Image_link")
+	private String imageLink;
 
 }

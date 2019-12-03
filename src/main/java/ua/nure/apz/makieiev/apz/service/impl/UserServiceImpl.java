@@ -15,52 +15,52 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private UserRepository userRepository;
+	private UserRepository userRepository;
 
-    @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+	@Autowired
+	public UserServiceImpl(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
 
-    @Override
-    public User add(User user) {
-        try {
-            String md5Password = encryptPassword(user.getPassword());
-            user.setPassword(md5Password);
-            return userRepository.save(user);
-        } catch (DataIntegrityViolationException ex) {
-            throw new NotUniqueUserException("The database contains a user with particular fields");
-        }
-    }
+	@Override
+	public User add(User user) {
+		try {
+			String md5Password = encryptPassword(user.getPassword());
+			user.setPassword(md5Password);
+			return userRepository.save(user);
+		} catch (DataIntegrityViolationException ex) {
+			throw new NotUniqueUserException("The database contains a user with particular fields");
+		}
+	}
 
-    @Override
-    public User update(User user) {
-        return userRepository.save(user);
-    }
+	@Override
+	public User update(User user) {
+		return userRepository.save(user);
+	}
 
-    @Override
-    public Optional<User> getById(long id) {
-        return userRepository.findById(id);
-    }
+	@Override
+	public Optional<User> getById(long id) {
+		return userRepository.findById(id);
+	}
 
-    @Override
-    public Optional<User> getByLogin(String login) {
-        return userRepository.findByLogin(login);
-    }
+	@Override
+	public Optional<User> getByLogin(String login) {
+		return userRepository.findByLogin(login);
+	}
 
-    @Override
-    public boolean removeById(long id) {
-        userRepository.deleteById(id);
-        return true;
-    }
+	@Override
+	public boolean removeById(long id) {
+		userRepository.deleteById(id);
+		return true;
+	}
 
-    @Override
-    public boolean checkPassword(User user, String password) {
-        return Objects.equals(user.getPassword(), encryptPassword(password));
-    }
+	@Override
+	public boolean checkPassword(User user, String password) {
+		return Objects.equals(user.getPassword(), encryptPassword(password));
+	}
 
-    private String encryptPassword(String password) {
-        return DigestUtils.md5Hex(password);
-    }
+	private String encryptPassword(String password) {
+		return DigestUtils.md5Hex(password);
+	}
 
 }

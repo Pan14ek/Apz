@@ -30,21 +30,21 @@ import java.io.Serializable;
 @Table(name = "gifts")
 public class Gift implements Serializable {
 
-    private static final long serialVersionUID = -7407784017150927639L;
+	private static final long serialVersionUID = -7407784017150927639L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_gift")
-    private long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_gift")
+	private long id;
 
-    @Column(name = "Title")
-    private String title;
+	@Column(name = "Title")
+	private String title;
 
-    @Column(name = "Description")
-    private String description;
+	@Column(name = "Description")
+	private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_gift_category")
-    private GiftCategory giftCategory;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_gift_category")
+	private GiftCategory giftCategory;
 
 }

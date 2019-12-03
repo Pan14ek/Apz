@@ -6,14 +6,14 @@ import java.util.Optional;
 
 public interface GiftService {
 
-    Gift add(Gift gift);
+	Gift add(Gift gift);
 
-    Gift update(Gift gift);
+	Gift update(Gift gift);
 
-    Optional<Gift> getById(long id);
+	Optional<Gift> getById(long id);
 
-    Optional<Gift> getByTitle(String title);
+	Optional<Gift> getByTitle(String title);
 
-    boolean removeById(long id);
+	boolean removeById(long id);
 
 }

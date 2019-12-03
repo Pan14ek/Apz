@@ -6,14 +6,14 @@ import java.util.Optional;
 
 public interface PositionService {
 
-    Position add(Position position);
+	Position add(Position position);
 
-    Position update(Position position);
+	Position update(Position position);
 
-    Optional<Position> getById(long id);
+	Optional<Position> getById(long id);
 
-    Optional<Position> getByTitle(String title);
+	Optional<Position> getByTitle(String title);
 
-    boolean removeById(long id);
+	boolean removeById(long id);
 
 }

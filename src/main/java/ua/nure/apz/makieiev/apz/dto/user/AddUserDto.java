@@ -17,13 +17,13 @@ import lombok.ToString;
 @Builder
 public class AddUserDto {
 
-    private long idCompany;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String login;
-    private String password;
-    private String repeatPassword;
-    private String imageLink;
+	private long idCompany;
+	private String firstName;
+	private String lastName;
+	private String email;
+	private String login;
+	private String password;
+	private String repeatPassword;
+	private String imageLink;
 
 }

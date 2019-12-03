@@ -17,8 +17,8 @@ import lombok.ToString;
 @Builder
 public class AchievementDto {
 
-    private String title;
-    private String description;
-    private String imageLink;
+	private String title;
+	private String description;
+	private String imageLink;
 
 }

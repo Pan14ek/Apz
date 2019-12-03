@@ -6,15 +6,15 @@ import java.util.Optional;
 
 public interface EventService {
 
-    Event add(Event event);
+	Event add(Event event);
 
-    Event update(Event event);
+	Event update(Event event);
 
-    Optional<Event> getById(long id);
+	Optional<Event> getById(long id);
 
-    Optional<Event> getByTitle(String title);
+	Optional<Event> getByTitle(String title);
 
-    boolean removeById(long id);
+	boolean removeById(long id);
 
 
 }

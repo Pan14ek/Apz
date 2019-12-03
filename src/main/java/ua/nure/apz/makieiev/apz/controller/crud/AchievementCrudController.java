@@ -27,55 +27,55 @@ import java.util.Map;
 @RequestMapping(RequestMappingLink.ACHIEVEMENT)
 public class AchievementCrudController {
 
-    private AchievementService achievementService;
-    private AddAchievementValidator addAchievementValidator;
-    private AchievementIdentificationValidator achievementIdentificationValidator;
-    private ModelMapper modelMapper;
+	private AchievementService achievementService;
+	private AddAchievementValidator addAchievementValidator;
+	private AchievementIdentificationValidator achievementIdentificationValidator;
+	private ModelMapper modelMapper;
 
-    @Autowired
-    public AchievementCrudController(AchievementService achievementService, AddAchievementValidator addAchievementValidator,
-                                     AchievementIdentificationValidator achievementIdentificationValidator, ModelMapper modelMapper) {
-        this.achievementService = achievementService;
-        this.addAchievementValidator = addAchievementValidator;
-        this.achievementIdentificationValidator = achievementIdentificationValidator;
-        this.modelMapper = modelMapper;
-    }
+	@Autowired
+	public AchievementCrudController(AchievementService achievementService, AddAchievementValidator addAchievementValidator,
+	                                 AchievementIdentificationValidator achievementIdentificationValidator, ModelMapper modelMapper) {
+		this.achievementService = achievementService;
+		this.addAchievementValidator = addAchievementValidator;
+		this.achievementIdentificationValidator = achievementIdentificationValidator;
+		this.modelMapper = modelMapper;
+	}
 
-    @PostMapping(value = SubLink.ADD, produces = "application/json")
-    public ResponseEntity addAchievement(@RequestBody AchievementDto achievementDto) {
-        try {
-            Map<String, Boolean> errors = addAchievementValidator.addAchievementValidate(achievementDto);
-            return getAddResponseEntity(achievementDto, errors);
-        } catch (NotUniqueAchievementException ex) {
-            throw new ConflictException(ex.getMessage());
-        }
-    }
+	@PostMapping(value = SubLink.ADD, produces = "application/json")
+	public ResponseEntity addAchievement(@RequestBody AchievementDto achievementDto) {
+		try {
+			Map<String, Boolean> errors = addAchievementValidator.addAchievementValidate(achievementDto);
+			return getAddResponseEntity(achievementDto, errors);
+		} catch (NotUniqueAchievementException ex) {
+			throw new ConflictException(ex.getMessage());
+		}
+	}
 
-    @DeleteMapping(SubLink.DELETE)
-    public ResponseEntity deleteAchievement(@RequestParam AchievementIdentificationDto achievementIdentificationDto) {
-        Map<String, Boolean> errors = achievementIdentificationValidator.achievementCategoryIdentificationValidate(achievementIdentificationDto);
-        if (errors.isEmpty()) {
-            boolean deleteFlag = achievementService.removeById(achievementIdentificationDto.getId());
-            return getDeleteResultFlag(deleteFlag);
-        } else {
-            return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
-        }
-    }
+	@DeleteMapping(SubLink.DELETE)
+	public ResponseEntity deleteAchievement(@RequestParam AchievementIdentificationDto achievementIdentificationDto) {
+		Map<String, Boolean> errors = achievementIdentificationValidator.achievementCategoryIdentificationValidate(achievementIdentificationDto);
+		if (errors.isEmpty()) {
+			boolean deleteFlag = achievementService.removeById(achievementIdentificationDto.getId());
+			return getDeleteResultFlag(deleteFlag);
+		} else {
+			return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+		}
+	}
 
-    private ResponseEntity getAddResponseEntity(@RequestBody AchievementDto achievementDto, Map<String, Boolean> errors) {
-        if (errors.isEmpty()) {
-            Achievement achievement = modelMapper.map(achievementDto, Achievement.class);
-            achievement = achievementService.add(achievement);
-            return new ResponseEntity<>(achievement, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
-        }
-    }
+	private ResponseEntity getAddResponseEntity(@RequestBody AchievementDto achievementDto, Map<String, Boolean> errors) {
+		if (errors.isEmpty()) {
+			Achievement achievement = modelMapper.map(achievementDto, Achievement.class);
+			achievement = achievementService.add(achievement);
+			return new ResponseEntity<>(achievement, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+		}
+	}
 
-    private ResponseEntity getDeleteResultFlag(boolean resultFlag) {
-        return resultFlag ?
-                new ResponseEntity<>(true, HttpStatus.OK) :
-                new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
-    }
+	private ResponseEntity getDeleteResultFlag(boolean resultFlag) {
+		return resultFlag ?
+				new ResponseEntity<>(true, HttpStatus.OK) :
+				new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
+	}
 
 }

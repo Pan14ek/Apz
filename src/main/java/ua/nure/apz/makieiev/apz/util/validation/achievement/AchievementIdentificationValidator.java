@@ -9,17 +9,17 @@ import java.util.Map;
 @Component
 public class AchievementIdentificationValidator {
 
-    public Map<String, Boolean> achievementCategoryIdentificationValidate(AchievementIdentificationDto achievementIdentificationDto) {
-        Map<String, Boolean> errors = new HashMap<>();
-        identificationValidate(achievementIdentificationDto.getId(), errors);
-        return errors;
-    }
+	public Map<String, Boolean> achievementCategoryIdentificationValidate(AchievementIdentificationDto achievementIdentificationDto) {
+		Map<String, Boolean> errors = new HashMap<>();
+		identificationValidate(achievementIdentificationDto.getId(), errors);
+		return errors;
+	}
 
-    private void identificationValidate(long id, Map<String, Boolean> errors) {
-        if (id < 0) {
-            errors.put("id", true);
-        }
-    }
+	private void identificationValidate(long id, Map<String, Boolean> errors) {
+		if (id < 0) {
+			errors.put("id", true);
+		}
+	}
 
 
 }

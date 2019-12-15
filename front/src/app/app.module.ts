@@ -4,13 +4,21 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AppComponent} from './app.component';
 import {HeaderComponent} from "./header/header.component";
 import {SignInComponent} from "./signin/signin.component";
+import {HttpClientModule} from '@angular/common/http';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
-    AppComponent, HeaderComponent, SignInComponent
+    AppComponent,
+    HeaderComponent,
+    SignInComponent
   ],
   imports: [
-    BrowserModule, FormsModule, ReactiveFormsModule
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

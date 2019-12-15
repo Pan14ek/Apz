@@ -1,0 +1,48 @@
+<ul class="navbar-nav mr-auto">
+  <li class="nav-item" data-toggle="modal" data-target="#modal-center-sign-in">
+    <a class="nav-link" href="#">Sign in <span class="sr-only">(current)</span></a>
+  </li>
+</ul>
+<div class="modal fade" id="modal-center-sign-in" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Sign in</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="signIn" method="post" name="signIn">
+          <fieldset [formGroup]="signInForm">
+            <legend>Sign in</legend>
+            <div class="form-group">
+              <label for="inputLogin">Login</label>
+              <input type="text" class="form-control" id="inputLogin" name="inputLogin"
+                     placeholder="Enter login" formControlName="login">
+            </div>
+            <div class="form-group">
+              <label for="inputPassword">Password</label>
+              <input type="password" class="form-control" id="inputPassword"
+                     name="inputPassword" placeholder="Password" formControlName="password">
+            </div>
+          </fieldset>
+          <button type="submit" class="btn btn-primary">
+            Sign in
+          </button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a class="nav-link" href="signup">
+          <button type="button" class="btn btn-primary">
+            Sign up
+          </button>
+        </a>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

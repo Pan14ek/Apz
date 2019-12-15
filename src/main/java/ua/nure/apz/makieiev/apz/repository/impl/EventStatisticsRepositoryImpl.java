@@ -26,6 +26,10 @@ public class EventStatisticsRepositoryImpl implements EventStatisticRepository {
 			"INNER JOIN users user ON user.Id_user = usersevents.Id_user " +
 			"INNER JOIN tasks task ON task.Id_event = events.Id_event;";
 
+	private static final String GET_RATING_SQL = "SELECT user.Login,SUM(task.Score) as TotalScore FROM tasks task " +
+			"INNER JOIN taskachievements on task.id_task = taskachievements.Id_task " +
+			"INNER  JOIN users user on taskachievements.Id_user = user.id_user;";
+
 	private DataSource dataSource;
 
 	@Autowired

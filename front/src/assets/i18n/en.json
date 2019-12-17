@@ -1,0 +1,35 @@
+{
+  "HEADER": {
+    "INFORMATION": "Information",
+    "EVENTS": "Events",
+    "RATING": "Rating",
+    "SIGN_IN": "Sign in"
+  },
+  "SIGN_IN_FORM": {
+    "SIGN_IN": "Sign in",
+    "LOGIN": "Login",
+    "PASSWORD": "Password",
+    "SIGN_IN_BUTTON": "Sign in",
+    "SIGN_UP_BUTTON": "Sign up",
+    "CLOSE": "Close",
+    "LOGIN_INPUT_INFO": "Enter your login",
+    "PASSWORD_INPUT_INFO": "Enter your password"
+  },
+  "EVENT_STATISTIC_TABLE": {
+    "TITLE": "Title",
+    "USER_AMOUNT": "User amount",
+    "TASK_AMOUNT": "Task amount",
+    "PERCENT_OF_DONE_TASKS": "Percent of done tasks"
+  },
+  "REGISTRATION_FORM": {
+    "FIRST_NAME": "First name",
+    "LAST_NAME": "Last name",
+    "LOGIN": "Login",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "REPEAT_PASSWORD": "Repeat password",
+    "PASSWORD_MESSAGE": "The password should have more than 6 symbols",
+    "SIGN_UP": "Sign up",
+    "BACK": "Back"
+  }
+}

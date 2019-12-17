@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row row-cols-1 row-cols-md-3">
+    <div *ngFor="let event of events" class="col mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{event.title}}</h5>
+          <p class="card-text">Start date: {{event.startDate}}</p>
+          <p class="card-text">Finish date: {{event.finishDate}}</p>
+        </div>
+        <div class="card-footer">
+          <button type="button" class="btn btn-primary">More details</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

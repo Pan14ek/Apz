@@ -8,6 +8,7 @@ public class SubLink {
 	public static final String GET = "/get";
 	public static final String DELETE = "/delete";
 	public static final String GET_ALL_EVENT_STATISTIC = "/get/event/statistic/all";
+	public static final String GET_ALL_EVENTS = "/get/all";
 
 	private SubLink() {
 	}

@@ -1,0 +1,20 @@
+<div class="container">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">{{"EVENT_STATISTIC_TABLE.TITLE" | translate}}</th>
+      <th scope="col">{{"EVENT_STATISTIC_TABLE.USER_AMOUNT" | translate}}</th>
+      <th scope="col">{{"EVENT_STATISTIC_TABLE.TASK_AMOUNT" | translate}}</th>
+      <th scope="col">{{"EVENT_STATISTIC_TABLE.PERCENT_OF_DONE_TASKS" | translate}}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let EventStatistic of EventStatistics">
+      <td>{{EventStatistic.eventTitle}}</td>
+      <td>{{EventStatistic.userAmount}}</td>
+      <td>{{EventStatistic.taskAmount}}</td>
+      <td>{{EventStatistic.percentOfDoneTasks}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

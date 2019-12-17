@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,7 @@ import ua.nure.apz.makieiev.apz.util.constant.SubLink;
 import ua.nure.apz.makieiev.apz.util.validation.event.AddEventValidator;
 import ua.nure.apz.makieiev.apz.util.validation.event.EventIdentificationValidator;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -58,6 +60,12 @@ public class EventCrudController {
 		} else {
 			return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
 		}
+	}
+
+	@GetMapping(SubLink.GET_ALL_EVENTS)
+	public ResponseEntity getAllEvents() {
+		List<Event> events = eventService.getAll();
+		return new ResponseEntity(events, HttpStatus.OK);
 	}
 
 	private ResponseEntity getAddResponseEntity(EventDto eventDto, Map<String, Boolean> errors) {

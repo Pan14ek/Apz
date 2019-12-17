@@ -1,20 +1,21 @@
 import {Component} from "@angular/core";
-import {FormControl, FormGroup} from "@angular/forms";
+import {NgbModal, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'sign-in',
   templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.css']
+  styleUrls: ['./signin.component.css'],
+  providers: [NgbModalConfig, NgbModal]
 })
 export class SignInComponent {
 
-  signInForm: FormGroup;
+  constructor(config: NgbModalConfig, private modalService: NgbModal) {
+    config.backdrop = 'static';
+    config.keyboard = false;
+  }
 
-  ngOnInit() {
-    this.signInForm = new FormGroup({
-      login: new FormControl(),
-      password: new FormControl()
-    });
+  open(content) {
+    this.modalService.open(content);
   }
 
 }

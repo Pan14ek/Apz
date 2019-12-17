@@ -9,6 +9,7 @@ import ua.nure.apz.makieiev.apz.model.entity.Event;
 import ua.nure.apz.makieiev.apz.repository.EventRepository;
 import ua.nure.apz.makieiev.apz.service.EventService;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,6 +20,11 @@ public class EventServiceImpl implements EventService {
 	@Autowired
 	public EventServiceImpl(EventRepository eventRepository) {
 		this.eventRepository = eventRepository;
+	}
+
+	@Override
+	public List<Event> getAll() {
+		return (List<Event>) eventRepository.findAll();
 	}
 
 	@Override

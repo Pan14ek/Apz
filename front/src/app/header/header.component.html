@@ -8,14 +8,16 @@
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-item nav-link" href="#">Information</a>
+        <a class="nav-item nav-link" routerLink="/home">{{'HEADER.INFORMATION' | translate }}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-item nav-link" href="#">Events</a>
+        <a class="nav-item nav-link" routerLink="/events">{{'HEADER.EVENTS' | translate }}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-item nav-link" href="#">Rating</a>
+        <a class="nav-item nav-link" routerLink="/rating/events">{{'HEADER.RATING' | translate }}</a>
       </li>
+      <button class="btn btn-primary" (click)="useLanguage('en')">en</button>
+      <button class="btn btn-primary" (click)="useLanguage('ua')">ua</button>
     </ul>
     <div class="my-lg-0">
       <sign-in></sign-in>
@@ -23,3 +25,4 @@
   </div>
 </nav>
 <br>
+<router-outlet></router-outlet>

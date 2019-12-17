@@ -1,0 +1,35 @@
+{
+  "HEADER": {
+    "INFORMATION": "Інформація",
+    "EVENTS": "Подія",
+    "RATING": "Рейтинг",
+    "SIGN_IN": "Вхід"
+  },
+  "SIGN_IN_FORM": {
+    "SIGN_IN": "Форма входу",
+    "LOGIN": "Логін",
+    "PASSWORD": "Пароль",
+    "SIGN_IN_BUTTON": "Увійти",
+    "SIGN_UP_BUTTON": "Зареєструватися",
+    "CLOSE": "Закрити",
+    "LOGIN_INPUT_INFO": "Введіть свій логін",
+    "PASSWORD_INPUT_INFO": "Введіть свій пароль"
+  },
+  "EVENT_STATISTIC_TABLE": {
+    "TITLE": "Назва",
+    "USER_AMOUNT": "Кількість участників",
+    "TASK_AMOUNT": "Кількість завдань",
+    "PERCENT_OF_DONE_TASKS": "Відсоток виконаних завдань"
+  },
+  "REGISTRATION_FORM": {
+    "FIRST_NAME": "Ім'я",
+    "LAST_NAME": "Прізвище",
+    "LOGIN": "Логін",
+    "EMAIL": "Електронна пошта",
+    "PASSWORD": "Пароль",
+    "REPEAT_PASSWORD": "Введіть пароль ще раз",
+    "PASSWORD_MESSAGE": "Пароль повинен бути більше ніж 6 символів",
+    "SIGN_UP": "Зареєструватися",
+    "BACK": "На головну"
+  }
+}

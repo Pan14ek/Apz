@@ -31,5 +31,10 @@
     "PASSWORD_MESSAGE": "The password should have more than 6 symbols",
     "SIGN_UP": "Sign up",
     "BACK": "Back"
+  },
+  "EVENTS_INFORMATION": {
+    "MORE_DETAILS_BUTTON": "More details",
+    "START_DATE": "Start date",
+    "FINISH_DATE": "Finish date"
   }
 }

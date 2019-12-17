@@ -1,5 +1,6 @@
 import {Component} from "@angular/core";
 import {NgbModal, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
+import {SignInUserDto} from "../dto/signinuser.dto";
 
 @Component({
   selector: 'sign-in',
@@ -8,6 +9,8 @@ import {NgbModal, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
   providers: [NgbModalConfig, NgbModal]
 })
 export class SignInComponent {
+
+  signInUserDto: SignInUserDto = new SignInUserDto('', '');
 
   constructor(config: NgbModalConfig, private modalService: NgbModal) {
     config.backdrop = 'static';

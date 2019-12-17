@@ -16,7 +16,7 @@
     "PASSWORD_INPUT_INFO": "Введіть свій пароль"
   },
   "EVENT_STATISTIC_TABLE": {
-    "TITLE": "Назва",
+    "TITLE": "Назва події",
     "USER_AMOUNT": "Кількість участників",
     "TASK_AMOUNT": "Кількість завдань",
     "PERCENT_OF_DONE_TASKS": "Відсоток виконаних завдань"
@@ -31,5 +31,10 @@
     "PASSWORD_MESSAGE": "Пароль повинен бути більше ніж 6 символів",
     "SIGN_UP": "Зареєструватися",
     "BACK": "На головну"
+  },
+  "EVENTS_INFORMATION": {
+    "MORE_DETAILS_BUTTON": "Більше інформації",
+    "START_DATE": "Початкова дата",
+    "FINISH_DATE": "Кінцева дата"
   }
 }

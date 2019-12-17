@@ -31,7 +31,8 @@ import {SignUpModule} from "./signup/signup-routing.module";
     EventsComponent
   ],
   entryComponents: [
-    SignInComponent
+    SignInComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
@@ -54,13 +55,15 @@ import {SignUpModule} from "./signup/signup-routing.module";
   ],
   providers: [],
   exports: [
-    SignInComponent
+    SignInComponent,
+    SignUpComponent
   ],
   bootstrap: [
     AppComponent,
     SignInComponent,
     HeaderComponent,
-    EventStatisticComponent
+    EventStatisticComponent,
+    SignUpComponent
   ]
 })
 export class AppModule {

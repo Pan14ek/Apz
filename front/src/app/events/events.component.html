@@ -4,11 +4,12 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">{{event.title}}</h5>
-          <p class="card-text">Start date: {{event.startDate}}</p>
-          <p class="card-text">Finish date: {{event.finishDate}}</p>
+          <p class="card-text">{{'EVENTS_INFORMATION.START_DATE' | translate}}: {{event.startDate}}</p>
+          <p class="card-text">{{'EVENTS_INFORMATION.FINISH_DATE' | translate}}: {{event.finishDate}}</p>
         </div>
         <div class="card-footer">
-          <button type="button" class="btn btn-primary">More details</button>
+          <button type="button" class="btn btn-primary">{{'EVENTS_INFORMATION.MORE_DETAILS_BUTTON'|translate}}
+          </button>
         </div>
       </div>
     </div>

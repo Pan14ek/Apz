@@ -11,9 +11,9 @@ import {Router} from "@angular/router";
   providers: [SignUpService]
 })
 export class SignUpComponent {
-  receivedUser: User;
-  done: boolean = false;
 
+  private receivedUser: User;
+  private done: boolean = false;
   private _signUpUserDto: SignUpUserDto = new SignUpUserDto(1,
     '',
     '',
@@ -27,16 +27,17 @@ export class SignUpComponent {
   }
 
   userRegistration(signUpUserDto: SignUpUserDto) {
-    console.log(signUpUserDto);
-    this.signUpService.addUser(signUpUserDto).subscribe(
-      (data: User) => {
-        this.receivedUser = data;
-        if (this.receivedUser != null) {
-          this.redirect();
-        }
-        this.done = true;
-      },
-      error => console.log(error));
+    this.signUpService
+      .addUser(signUpUserDto)
+      .subscribe(
+        (data: User) => {
+          this.receivedUser = data;
+          if (this.receivedUser != null) {
+            this.redirect();
+          }
+          this.done = true;
+        },
+        error => console.log(error));
   }
 
   get signUpUserDto(): SignUpUserDto {

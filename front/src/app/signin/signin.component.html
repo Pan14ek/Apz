@@ -6,18 +6,20 @@
     </button>
   </div>
   <div class="modal-body">
-    <form action="authorization" method="post" name="signIn">
+    <form method="post" name="signIn">
       <div class="form-group">
         <label for="inputLogin">{{'SIGN_IN_FORM.LOGIN' | translate }}</label>
-        <input type="text" class="form-control" id="inputLogin" name="inputLogin"
+        <input type="text" class="form-control" id="inputLogin" name="inputLogin" [(ngModel)]="signInUserDto.login"
+               [ngModelOptions]="{standalone: true}"
                placeholder="{{'SIGN_IN_FORM.LOGIN_INPUT_INFO' | translate }}">
       </div>
       <div class="form-group">
         <label for="inputPassword">{{'SIGN_IN_FORM.PASSWORD' | translate }}</label>
         <input type="password" class="form-control" id="inputPassword"
-               name="inputPassword" placeholder="{{'SIGN_IN_FORM.PASSWORD_INPUT_INFO' | translate }}">
+               name="inputPassword" [(ngModel)]="signInUserDto.password" [ngModelOptions]="{standalone: true}"
+               placeholder="{{'SIGN_IN_FORM.PASSWORD_INPUT_INFO' | translate }}">
       </div>
-      <button type="submit" class="btn btn-primary">
+      <button class="btn btn-primary" (click)="signIn(signInUserDto)">
         {{'SIGN_IN_FORM.SIGN_IN_BUTTON' | translate }}
       </button>
     </form>

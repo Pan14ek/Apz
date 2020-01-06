@@ -13,6 +13,7 @@ import ua.nure.apz.makieiev.apz.service.UserService;
 import ua.nure.apz.makieiev.apz.util.constant.SubLink;
 import ua.nure.apz.makieiev.apz.util.validation.user.SignInUserValidator;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 import java.util.Optional;
@@ -57,6 +58,9 @@ public class AuthorizeUserController {
 	private ResponseEntity<AuthorizeUser> checkPasswordHandler(boolean passwordFlag, User user, HttpServletResponse httpServletResponse) {
 		if (passwordFlag) {
 			String token = tokenService.generateToken();
+			Cookie tokenCookie = new Cookie("Token", token);
+			tokenCookie.setHttpOnly(true);
+			httpServletResponse.addCookie(tokenCookie);
 			httpServletResponse.setHeader("Token", token);
 			return new ResponseEntity<>(new AuthorizeUser(user, token), HttpStatus.OK);
 		} else {

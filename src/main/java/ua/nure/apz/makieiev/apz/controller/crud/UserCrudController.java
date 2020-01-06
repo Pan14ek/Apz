@@ -96,7 +96,7 @@ public class UserCrudController {
 		}
 	}
 
-	private ResponseEntity addHandler(Map<String, Boolean> errors, AddUserDto addUserDto) {
+	private ResponseEntity<?> addHandler(Map<String, Boolean> errors, AddUserDto addUserDto) {
 		if (errors.isEmpty()) {
 			User user = getUser(addUserDto);
 			return new ResponseEntity<>(user, HttpStatus.OK);
@@ -122,22 +122,22 @@ public class UserCrudController {
 				new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
 	}
 
-	private ResponseEntity getUserHandler(UserIdentificationDto userIdentificationDto, Map<String, Boolean> errors) {
+	private ResponseEntity<?> getUserHandler(UserIdentificationDto userIdentificationDto, Map<String, Boolean> errors) {
 		return errors.isEmpty() ? getUserResponse(userIdentificationDto, errors) : getErrorResponse(errors);
 	}
 
-	private ResponseEntity getUserResponse(UserIdentificationDto userIdentificationDto, Map<String, Boolean> errors) {
+	private ResponseEntity<?> getUserResponse(UserIdentificationDto userIdentificationDto, Map<String, Boolean> errors) {
 		Optional<User> userOptional = userService.getById(userIdentificationDto.getId());
 		return userOptional.isPresent() ?
 				new ResponseEntity<>(userOptional.get(), HttpStatus.OK) :
 				new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
 	}
 
-	private ResponseEntity getErrorResponse(Map<String, Boolean> errors) {
+	private ResponseEntity<?> getErrorResponse(Map<String, Boolean> errors) {
 		return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
 	}
 
-	private ResponseEntity updateUserHandler(Map<String, Boolean> errors, UpdateUserDto updateUserDto) {
+	private ResponseEntity<?> updateUserHandler(Map<String, Boolean> errors, UpdateUserDto updateUserDto) {
 		if (errors.isEmpty()) {
 			Optional<User> optionalUser = userService.getByLogin(updateUserDto.getLogin());
 			return getResponseEntity(errors, updateUserDto, optionalUser);
@@ -146,7 +146,7 @@ public class UserCrudController {
 		}
 	}
 
-	private ResponseEntity getResponseEntity(Map<String, Boolean> errors, UpdateUserDto updateUserDto, Optional<User> optionalUser) {
+	private ResponseEntity<?> getResponseEntity(Map<String, Boolean> errors, UpdateUserDto updateUserDto, Optional<User> optionalUser) {
 		if (optionalUser.isPresent()) {
 			User user = getUserWithUpdatedField(updateUserDto, optionalUser.get());
 			user = userService.update(user);

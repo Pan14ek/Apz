@@ -43,7 +43,11 @@ public class SecureFilter implements Filter {
 
 	private Optional<Cookie> getTokenFromCookies(HttpServletRequest request) {
 		Cookie[] cookies = request.getCookies();
-		return Arrays.stream(cookies).filter(cookie -> Objects.equals(cookie.getName(), TOKEN)).findFirst();
+		if (Objects.isNull(cookies)) {
+			return Optional.empty();
+		} else {
+			return Arrays.stream(cookies).filter(cookie -> Objects.equals(cookie.getName(), TOKEN)).findFirst();
+		}
 	}
 
 }
